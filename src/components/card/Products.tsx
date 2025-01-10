@@ -1,6 +1,6 @@
 import { getFetch } from "@/lib";
 import { ICategoryHome } from "@/types/homeProducts";
-import ProductCard from "./productCard";
+import ProductCard from "./ProductCard";
 
 const Products = async ({ locale }: { locale: string }) => {
   const { data }: { data: ICategoryHome[] } = await getFetch({
