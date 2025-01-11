@@ -8,6 +8,8 @@
 		--foreground: 222.2 84% 4.9%;
 
 		--font-sans: 'Inter', sans-serif;
+
+		--radius: 0.5rem;
 	}
 
 	.dark {
@@ -27,7 +29,5 @@
 	}
 }
 body {
-	color: var(--foreground);
-	background: var(--background);
 	font-family: Arial, Helvetica, sans-serif;
 }
