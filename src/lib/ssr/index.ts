@@ -1,2 +1,2 @@
-import getFetch from './getFetch'
-export { getFetch }
+import getFetch from "./getFetch";
+export { getFetch };

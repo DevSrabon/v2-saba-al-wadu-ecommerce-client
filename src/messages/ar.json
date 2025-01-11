@@ -1,22 +1,25 @@
 {
-	"NavbarLinks": {
-		"home": "الرئيسية",
-		"homeTitle": "صفحة الرئيسية",
-		"about": "من نحن",
-		"aboutTitle": "صفحة من نحن",
-		"profile": "الملف الشخصي",
-		"profileTitle": "صفحة الملف الشخصي"
-	},
-	"HomePage": {
-		"title": "صفحة الهبوط"
-	},
-	"AboutPage": {
-		"title": "من نحن"
-	},
-	"ProfilePage": {
-		"title": "الملف الشخصي"
-	},
-	"BasicText": {
-		"seeMore": "المزيد"
-	}
+  "NavbarLinks": {
+    "home": "الرئيسية",
+    "homeTitle": "صفحة الرئيسية",
+    "about": "من نحن",
+    "aboutTitle": "صفحة من نحن",
+    "profile": "الملف الشخصي",
+    "profileTitle": "صفحة الملف الشخصي"
+  },
+  "HomePage": {
+    "title": "صفحة الهبوط"
+  },
+  "AboutPage": {
+    "title": "من نحن"
+  },
+  "ProfilePage": {
+    "title": "الملف الشخصي"
+  },
+  "BasicText": {
+    "seeMore": "المزيد"
+  },
+  "Cart": {
+    "addToCard": "أضف إلى البطاقة"
+  }
 }

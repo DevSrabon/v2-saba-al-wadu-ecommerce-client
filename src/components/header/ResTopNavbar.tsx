@@ -1,0 +1,75 @@
+import { Separator } from '@/components/ui/separator';
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
+import { cn } from '@/lib/utils';
+import CategoriesSectionItem from '../category/categoryItems';
+
+import { ICategories } from '@/types/commonTypes';
+import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
+import { NavMenu } from './navbar.types';
+
+
+interface Props {
+  categories: ICategories[] | undefined;
+  data: NavMenu;
+  is_login: string | undefined;
+}
+
+const ResTopNavbar = ({ data, categories, is_login }: Props) => {
+  return (
+    <Sheet>
+      <SheetTrigger asChild className='cursor-pointer'>
+        <Image
+          priority
+          src='/icons/menu.svg'
+          height={100}
+          width={100}
+          alt='menu'
+          className='max-w-[22px] max-h-[22px]'
+        />
+      </SheetTrigger>
+      <SheetContent side='left' className='overflow-y-auto'>
+        <SheetHeader className='mb-10'>
+          <SheetTitle asChild>
+            <SheetClose asChild>
+              <Link
+                href='/'
+                className={cn(['text-2xl text-primary'])}
+              >
+                {"SABA AL WADU"}
+              </Link>
+            </SheetClose>
+          </SheetTitle>
+        </SheetHeader>
+        <div className='flex flex-col items-start'>
+          {data?.map((item) => (
+            <React.Fragment key={item.id}>
+              {item.type === 'MenuItem' && (
+                <SheetClose asChild>
+                  <Link href={item.url ?? '/'} className='mb-4'>
+                    {item.label}
+                  </Link>
+                </SheetClose>
+              )}
+            </React.Fragment>
+          ))}
+        </div>
+
+        <span className='text-gray-400 text-sm'>All Categories</span>
+        <Separator className='mb-1' />
+
+        <CategoriesSectionItem categories={categories} />
+      </SheetContent>
+    </Sheet>
+  );
+};
+
+export default ResTopNavbar;

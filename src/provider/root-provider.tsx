@@ -1,12 +1,13 @@
-'use client';
+"use client";
 
-import { setupListeners } from '@reduxjs/toolkit/query';
-import { SessionProvider } from 'next-auth/react';
-
-import React, { useEffect, useMemo, useRef } from 'react';
-import { Provider } from 'react-redux';
-import { ThemeProvider } from './theme-provider';
-import { AppStore, makeStore } from '@/store';
+import { primaryColor } from "@/constants";
+import { AppStore, makeStore } from "@/store";
+import { setupListeners } from "@reduxjs/toolkit/query";
+import HolyLoader from "holy-loader";
+import { SessionProvider } from "next-auth/react";
+import React, { useEffect, useMemo, useRef } from "react";
+import { Provider } from "react-redux";
+import { ThemeProvider } from "./theme-provider";
 export const RootProviders = ({ children }: { children: React.ReactNode }) => {
 	const storeRef = useRef<AppStore | null>(null);
 
@@ -24,12 +25,13 @@ export const RootProviders = ({ children }: { children: React.ReactNode }) => {
 		}
 	}, []);
 
-	const contextValue = useMemo(() => ({ name: 'Ant Design' }), []);
+	const contextValue = useMemo(() => ({ name: "Ant Design" }), []);
 
 	return (
 		<ThemeProvider attribute="class">
 			<Context.Provider value={contextValue}>
 				<SessionProvider>
+					<HolyLoader color={primaryColor} />
 					<Provider store={storeRef.current}>{children}</Provider>
 				</SessionProvider>
 			</Context.Provider>
@@ -37,4 +39,4 @@ export const RootProviders = ({ children }: { children: React.ReactNode }) => {
 	);
 };
 
-const Context = React.createContext({ name: 'Default' });
+const Context = React.createContext({ name: "Default" });

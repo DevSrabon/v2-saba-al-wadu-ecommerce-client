@@ -1,85 +1,105 @@
-import React from 'react';
-import { NavCart, NavItem, NavProfile, SearchForm } from './nav-items';
+import { getFetch } from "@/lib";
+import { NavigationMenu } from "@radix-ui/react-navigation-menu";
+import Image from "next/image";
+import Link from "next/link";
+import { NavigationMenuList } from "../ui/navigation-menu";
+import { MenuItem } from "./MenuItem";
+import { MenuList } from "./MenuList";
+import MobileProductSearch from "./MobileProductSearch";
 
-export function Header() {
-	return (
-		<nav className="border-b border-gray-100">
-			<div className="mx-auto max-w-full px-2 sm:px-6 lg:px-8">
-				<div className="relative flex h-16 items-center justify-between">
-					<div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-						{/* <!-- Mobile menu button--> */}
-						<button
-							type="button"
-							className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-							aria-controls="mobile-menu"
-							aria-expanded="false"
-						>
-							<span className="absolute -inset-0.5"></span>
-							<span className="sr-only">Open main menu</span>
+import { NavCart, NavWishList } from "./nav-items";
+import { NavMenu } from "./navbar.types";
+import ProductSearch from "./ProductSearch";
+import ResTopNavbar from "./ResTopNavbar";
+const data: NavMenu = [
+  {
+    id: 1,
+    type: "MenuItem",
+    label: "New Arrivals",
+    url: "/shop?sort_by=most-popular",
+  },
+  {
+    id: 2,
+    type: "MenuItem",
+    label: "Best Selling",
+    url: "/shop?sort_by=",
+  },
+  {
+    id: 3,
+    type: "MenuItem",
+    label: "Hot Deals",
+    url: "/shop?sort_by=",
+  },
+];
+export async function Header() {
+  const response = await getFetch({ url: "/ecomm/categories" });
 
-							<svg
-								className="block size-6"
-								fill="none"
-								viewBox="0 0 24 24"
-								stroke-width="1.5"
-								stroke="currentColor"
-								aria-hidden="true"
-								data-slot="icon"
-							>
-								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-								/>
-							</svg>
+  const categories = response?.data;
+  const profile_logo = false;
+  const is_login = false;
+  return (
+    <nav className="top-0 bg-white z-20 sticky px-2 lg:px-5">
+      <div className="flex relative max-w-frame mx-auto items-center justify-between lg:justify-start py-2 lg:py-3 ">
+        <div className="flex items-center">
+          <div className="block lg:hidden mr-4">
+            <ResTopNavbar data={data} categories={categories} is_login={""} />
+          </div>
+          <Link
+            href="/"
 
-							<svg
-								className="hidden size-6"
-								fill="none"
-								viewBox="0 0 24 24"
-								stroke-width="1.5"
-								stroke="currentColor"
-								aria-hidden="true"
-								data-slot="icon"
-							>
-								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									d="M6 18 18 6M6 6l12 12"
-								/>
-							</svg>
-						</button>
-					</div>
-					<div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-						<div className="flex shrink-0 items-center">
-							<img
-								className="h-8 w-auto"
-								src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500"
-								alt="Your Company"
-							/>
-						</div>
-						<div className="shrink-0 hidden sm:ml-6 sm:block">
-							<div className="flex space-x-4">
-								<NavItem name="Categories" active />
-								<NavItem name="New Arrivals" />
-								<NavItem name="Best Selling" />
-								<NavItem name="Hot Deals" />
-								<NavItem name="Upcoming" />
-							</div>
-						</div>
-					</div>
-					<div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 gap-2 shrink-0">
-						{/* search  */}
-						<SearchForm />
+          >
+            <Image src='/logo.png' priority alt="Saba Al Wadu logo" width={100} height={100}
+              className="lg:max-w-[100px] lg:max-h-[100px]" />
+          </Link>
+          <NavigationMenu className="hidden lg:flex mr-2 lg:mr-7">
+            <NavigationMenuList>
+              <>
+                <MenuItem categories={categories} />
+                <div>
 
-						{/* profile  */}
-						<NavProfile />
+                </div>
+                {data?.map((item) => (
+                  <MenuList label={item.label} key={item.id} href={item.url as string} active={item.id === 1} />
+                ))}
+              </>
+            </NavigationMenuList>
+          </NavigationMenu>
+        </div>
+        <div className="flex w-full justify-end">
+          <ProductSearch />
+          <MobileProductSearch />
+          {/* <CartBtn /> */}
+          <NavWishList />
+          <NavCart />
+          <Link
+            href={is_login ? "/user-profile/my-account" : "/login"}
+            className="p-1 flex gap-1.5 items-center group "
+          >
+            {profile_logo ? (
+              <Image
+                src={profile_logo}
+                width={100}
+                height={100}
+                alt="profile image"
+                className="max-w-[22px] max-h-[22px] rounded-full"
+              />
+            ) : (
+              <Image
+                priority
+                src="/icons/user.svg"
+                height={100}
+                width={100}
+                alt="user"
+                className="max-w-[22px] max-h-[22px]"
+              />
+            )}
 
-						{/* cart */}
-						<NavCart />
-					</div>
-				</div>
-			</div>
-		</nav>
-	);
+            <span className="group-hover:underline">
+              {is_login ? "Profile" : "Login"}
+            </span>
+          </Link>
+        </div>
+      </div>
+    </nav>
+  );
 }

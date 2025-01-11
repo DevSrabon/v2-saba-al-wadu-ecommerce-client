@@ -1,6 +1,6 @@
-export type StatusType = 'active' | 'inactive' | 'deleted';
+export type StatusType = "active" | "inactive" | "deleted";
 
 export type SelectStatusType = {
-	value: StatusType;
-	label: string;
+  value: StatusType;
+  label: string;
 };
