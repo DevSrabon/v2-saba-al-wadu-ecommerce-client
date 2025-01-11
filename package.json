@@ -7,12 +7,11 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
-		"type-check": "tsc --project tsconfig.json --pretty --noEmit && echo "
+		"type-check": "tsc --project tsconfig.json --pretty --noEmit && echo"
 	},
 	"dependencies": {
 		"@ant-design/nextjs-registry": "^1.0.2",
 		"@reduxjs/toolkit": "^2.5.0",
-		"antd": "^5.22.5",
 		"embla-carousel-react": "^8.5.2",
 		"lucide-react": "^0.468.0",
 		"next": "14.0.4",

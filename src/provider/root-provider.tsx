@@ -7,7 +7,6 @@ import React, { useEffect, useMemo, useRef } from 'react';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from './theme-provider';
 import { AppStore, makeStore } from '@/store';
-import { AntdRegistry } from '@ant-design/nextjs-registry';
 export const RootProviders = ({ children }: { children: React.ReactNode }) => {
 	const storeRef = useRef<AppStore | null>(null);
 
@@ -29,13 +28,11 @@ export const RootProviders = ({ children }: { children: React.ReactNode }) => {
 
 	return (
 		<ThemeProvider attribute="class">
-			<AntdRegistry>
-				<Context.Provider value={contextValue}>
-					<SessionProvider>
-						<Provider store={storeRef.current}>{children}</Provider>
-					</SessionProvider>
-				</Context.Provider>
-			</AntdRegistry>
+			<Context.Provider value={contextValue}>
+				<SessionProvider>
+					<Provider store={storeRef.current}>{children}</Provider>
+				</SessionProvider>
+			</Context.Provider>
 		</ThemeProvider>
 	);
 };
