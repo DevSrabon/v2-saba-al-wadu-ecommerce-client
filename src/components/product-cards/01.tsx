@@ -68,7 +68,7 @@ export function ProductCard01({
 				<div className="absolute bottom-4 left-4 right-4 ">
 					<a
 						href="#"
-						className="flex items-center justify-center rounded-md bg-[#b7a308] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
+						className="flex items-center justify-center rounded-md bg-[#b7a308] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-300"
 					>
 						<ShoppingCart className="mr-2" />
 						Add to cart

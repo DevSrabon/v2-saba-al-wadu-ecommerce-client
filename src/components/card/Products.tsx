@@ -49,7 +49,7 @@ const Products = async ({ locale }: { locale: string }) => {
 										once={false}
 										i={i}
 										key={product?.p_id}
-										className="relative  flex w-full lg:max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md"
+										className="relative  flex w-full lg:max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow"
 									>
 										<ProductCard01
 											locale={locale}
