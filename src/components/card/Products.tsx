@@ -20,7 +20,7 @@ const Products = async ({ locale }: { locale: string }) => {
 						<div key={category?.cate_id} className="mb-10">
 							<div className="flex justify-between gap-2 items-center  mb-5">
 								{/* Display the category title */}
-								<h2 className="text-2xl font-bold">
+								<h2 className="text-3xl font-bold">
 									{locale === 'en'
 										? category?.cate_name_en
 										: category?.cate_name_ar}

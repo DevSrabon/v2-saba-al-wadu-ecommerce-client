@@ -18,12 +18,12 @@ export function ProductCard01({
 				className="relative mx-3 mt-3 flex h-80 overflow-hidden rounded-xl"
 				href="#"
 			>
-				{/* <EmblaCarousel images={product.all_images} /> */}
-				<img
+				<EmblaCarousel images={product.all_images} />
+				{/* <img
 					className="object-cover w-full"
 					src={imageURL + product.all_images[0]}
 					alt="product image"
-				/>
+				/> */}
 				<span className="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">
 					39% OFF
 				</span>

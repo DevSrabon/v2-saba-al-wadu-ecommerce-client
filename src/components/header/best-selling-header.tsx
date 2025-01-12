@@ -4,5 +4,5 @@ import React from 'react';
 
 export function BestSellingHeader() {
 	const t = useTranslations('BasicText');
-	return <h2 className="text-2xl font-bold"> {t('bestSelling')}</h2>;
+	return <h2 className="text-3xl font-bold"> {t('bestSelling')}</h2>;
 }

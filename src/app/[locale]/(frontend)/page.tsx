@@ -11,7 +11,7 @@ import { getLocale } from 'next-intl/server';
 import { Suspense } from 'react';
 export default async function Home() {
 	const { data }: { data: IProduct[] } = await getFetch({
-		url: 'ecomm/product?bestSelling=1',
+		url: 'ecomm/product?bestSelling=1&limit=10',
 	});
 
 	const locale = await getLocale();
