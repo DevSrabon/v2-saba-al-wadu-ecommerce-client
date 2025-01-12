@@ -79,7 +79,7 @@ export function MotionItem({
 		<motion.div
 			className={className}
 			viewport={{ once }}
-			initial={{ opacity: 0, y: 0 }}
+			initial={{ opacity: 0, y: 20 }}
 			whileHover={{
 				scale: 1.05,
 			}}
@@ -89,7 +89,8 @@ export function MotionItem({
 				y: 0,
 				transition: {
 					duration: 0.5,
-					staggerChildren: 0.3,
+					delay: i * 0.1,
+					staggerChildren: 0.1,
 					ease: 'easeOut',
 				},
 			}}
