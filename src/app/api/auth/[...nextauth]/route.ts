@@ -1,68 +1,67 @@
-import NextAuth, { User as NextAuthUser } from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
+import NextAuth, { User as NextAuthUser } from 'next-auth';
+import CredentialsProvider from 'next-auth/providers/credentials';
 
 // Define the extended user type
 interface CustomUser extends NextAuthUser {
-  accessToken?: string;
-  refreshToken?: string;
-  user: any;
+	accessToken?: string;
+	refreshToken?: string;
+	user: any;
 }
 
 const handler = NextAuth({
-  providers: [
-    CredentialsProvider({
-      name: "credentials",
-      credentials: {
-        token: {},
-      },
-      async authorize(credentials) {
-        if (credentials?.token) {
-          const parsedToken = JSON.parse(credentials.token);
+	providers: [
+		CredentialsProvider({
+			name: 'credentials',
+			credentials: {
+				token: {},
+			},
+			async authorize(credentials) {
+				if (credentials?.token) {
+					const parsedToken = JSON.parse(credentials.token);
 
-          console.log(parsedToken, "credentials");
-          return {
-            id: parsedToken._id,
-            accessToken: parsedToken.accessToken,
-            refreshToken: "", // Set this if you have a refresh token
-            user: parsedToken.user,
-          };
-        }
-        return null;
-      },
-    }),
-  ],
-  session: {
-    strategy: "jwt",
-  },
-  callbacks: {
-    async jwt({ token, user }) {
-      if (user) {
-        // Set the initial token properties on login
-        return {
-          ...token,
-          accessToken: (user as CustomUser).accessToken,
-          refreshToken: (user as CustomUser).refreshToken,
-          user: (user as CustomUser).user,
-        };
-      }
+					return {
+						id: parsedToken._id,
+						accessToken: parsedToken.accessToken,
+						refreshToken: '', // Set this if you have a refresh token
+						user: parsedToken.user,
+					};
+				}
+				return null;
+			},
+		}),
+	],
+	session: {
+		strategy: 'jwt',
+	},
+	callbacks: {
+		async jwt({ token, user }) {
+			if (user) {
+				// Set the initial token properties on login
+				return {
+					...token,
+					accessToken: (user as CustomUser).accessToken,
+					refreshToken: (user as CustomUser).refreshToken,
+					user: (user as CustomUser).user,
+				};
+			}
 
-      // Return the token if it already exists
-      return {
-        ...token,
-        accessToken: token.accessToken,
-        refreshToken: token.refreshToken,
-        user: token.user,
-      };
-    },
-    async session({ session, token }) {
-      // Map token properties to session
-      session.accessToken = token.accessToken as string;
-      session.refreshToken = token.refreshToken as string;
-      session.user = token.user as any;
+			// Return the token if it already exists
+			return {
+				...token,
+				accessToken: token.accessToken,
+				refreshToken: token.refreshToken,
+				user: token.user,
+			};
+		},
+		async session({ session, token }) {
+			// Map token properties to session
+			session.accessToken = token.accessToken as string;
+			session.refreshToken = token.refreshToken as string;
+			session.user = token.user as any;
 
-      return session;
-    },
-  },
+			return session;
+		},
+	},
 });
 
 export { handler as GET, handler as POST };

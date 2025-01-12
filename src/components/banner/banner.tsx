@@ -1,34 +1,49 @@
-import React from "react";
+import { getFetch } from '@/lib';
+import { IBanner } from '@/types';
+import React from 'react';
+import { BannerSlider } from './banner-slider';
 
-export const Banner = () => {
-  return (
-    <div className="relative w-full h-64 bg-rose-50 overflow-hidden rounded-lg">
-      {/* Content Container */}
-      <div className="flex justify-between items-center h-full px-8 md:px-12">
-        {/* Left side content */}
-        <div className="z-10">
-          <h2 className="text-2xl md:text-4xl font-bold text-green-900 mb-4">
-            Grab Upto 50% Off On
-          </h2>
-          <h3 className="text-xl md:text-3xl font-semibold text-green-900 mb-6">
-            Selected Headphone
-          </h3>
-          <button className="bg-green-900 text-white px-6 py-2 rounded-md hover:bg-green-800 transition-colors">
-            Buy Now
-          </button>
-        </div>
+export const Banner = async () => {
+	const { data }: { data: IBanner[] } = await getFetch({
+		url: 'ecomm/product/banner?limit=10&skip=0',
+	});
 
-        {/* Right side image */}
-        <div className="absolute right-0 h-full">
-          <div className="relative h-full w-64 md:w-80">
-            <img
-              src="/api/placeholder/400/400"
-              alt="Person wearing headphones"
-              className="h-full object-cover"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+	return (
+		<div className="relative overflow-hidden bg-gradient-to-r from-green-100 to-green-200 text-white">
+			<div className="container mx-auto px-4 py-8 sm:py-12 lg:py-16">
+				{/* <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12 lg:gap-16 items-center relative z-10">
+
+					<div className="space-y-4 md:space-y-6">
+						<h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+							{data[0].banner_en}
+						</h2>
+						<p className="text-lg sm:text-xl md:text-2xl">
+							{data[0].banner_en}
+						</p>
+						<button
+							// onClick={data[0].banner_en}
+							className="inline-flex items-center rounded-full bg-white px-6 py-3 text-base font-medium text-purple-600 shadow-sm hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+						>
+							{data[0].banner_en}
+							<ArrowRight className="ml-2 -mr-1 h-5 w-5" aria-hidden="true" />
+						</button>
+					</div>
+					<div className="relative h-64 sm:h-72 md:h-80 lg:h-96">
+						<Image
+							src={getImageLink(data[0].image)}
+							alt="Featured product"
+							fill
+							style={{ objectFit: 'cover' }}
+							className="rounded-lg shadow-xl"
+						/>
+					</div>
+				</div> */}
+				<BannerSlider banner={data} />
+			</div>
+			<div
+				className="absolute inset-0 bg-gradient-to-r from-blue-400 to-yellow-100 opacity-75 mix-blend-multiply"
+				aria-hidden="true"
+			></div>
+		</div>
+	);
 };
