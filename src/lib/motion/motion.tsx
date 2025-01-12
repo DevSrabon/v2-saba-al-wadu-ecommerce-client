@@ -19,6 +19,7 @@ export function Motion({ children }: { children: React.ReactNode }) {
 		</motion.div>
 	);
 }
+
 export function MotionView({ children }: { children: React.ReactNode }) {
 	return (
 		<motion.div
@@ -78,10 +79,10 @@ export function MotionItem({
 		<motion.div
 			className={className}
 			viewport={{ once }}
-			initial={{ opacity: 0, y: 100 }}
+			initial={{ opacity: 0 }}
 			whileInView={{
 				opacity: 1,
-				y: 0,
+
 				transition: {
 					duration: 0.5,
 					delay: i * 0.15,
