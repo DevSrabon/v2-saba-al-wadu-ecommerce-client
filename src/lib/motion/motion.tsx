@@ -86,7 +86,7 @@ export function MotionItem({
 			transition={{ duration: 0.5, yoyo: Infinity }}
 			whileInView={{
 				opacity: 1,
-				y: 50,
+				y: -50,
 				transition: {
 					duration: 0.5,
 					delay: i * 0.15,
