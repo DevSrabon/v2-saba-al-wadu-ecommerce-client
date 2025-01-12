@@ -3,17 +3,17 @@
 @tailwind utilities;
 
 @layer base {
-	:root {
-		--background: 0 0% 100%;
-		--foreground: 222.2 84% 4.9%;
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
 
-		--font-sans: 'Poppins', sans-serif;
-		--font-heading: 'Marcellus', serif;
+    --font-sans: "Poppins", sans-serif;
+    --font-heading: "Marcellus", serif;
 
-		--radius: 0.5rem;
-	}
+    --radius: 0.5rem;
+  }
 
-	/* .dark {
+  /* .dark {
 		--background: 222.2 84% 4.9%;
 		--foreground: 210 40% 98%;
 
@@ -22,16 +22,17 @@
 }
 
 @layer components {
-	.modal_title {
-		@apply text-center text-2xl/9 font-bold tracking-tight text-gray-900;
-	}
-	.modal_sub_title {
-		@apply text-center text-base tracking-tight text-gray-900;
-	}
+  .modal_title {
+    @apply text-center text-2xl/9 font-bold tracking-tight text-gray-900;
+  }
+  .modal_sub_title {
+    @apply text-center text-base tracking-tight text-gray-900;
+  }
 }
 
 body {
-	font-family: var(--font-sans);
+  font-family: var(--font-sans);
+  letter-spacing: 1.5px;
 }
 
 h1,
@@ -40,5 +41,5 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: var(--font-heading);
+  font-family: var(--font-heading);
 }

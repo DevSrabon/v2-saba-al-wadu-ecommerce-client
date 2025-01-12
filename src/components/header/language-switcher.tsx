@@ -19,12 +19,12 @@ export function LanguageSwitcher() {
       <DropdownMenuContent>
         <DropdownMenuLabel>Language</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          <Link href="/en">English</Link>
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <Link href="/ar">Arabic</Link>
-        </DropdownMenuItem>
+        <Link href="/en" locale="en">
+          <DropdownMenuItem>English</DropdownMenuItem>
+        </Link>
+        <Link href="/ar" locale="ar">
+          <DropdownMenuItem>Arabic</DropdownMenuItem>
+        </Link>
       </DropdownMenuContent>
     </DropdownMenu>
   );
