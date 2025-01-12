@@ -79,10 +79,14 @@ export function MotionItem({
 		<motion.div
 			className={className}
 			viewport={{ once }}
-			initial={{ opacity: 0 }}
+			initial={{ opacity: 0, y: 0 }}
+			whileHover={{
+				scale: 1.05,
+			}}
+			transition={{ duration: 0.5, yoyo: Infinity }}
 			whileInView={{
 				opacity: 1,
-
+				y: 50,
 				transition: {
 					duration: 0.5,
 					delay: i * 0.15,
