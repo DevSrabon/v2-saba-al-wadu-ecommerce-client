@@ -17,7 +17,7 @@ type Props = {};
 
 const ProductSearch = (props: Props) => {
   const router = useRouter();
-  const [isFocused, setIsFocused] = useState(false); // Track focus state
+  const [isFocused, setIsFocused] = useState(false);
   const [search, setSearch] = useState("");
   const locale = useLocale();
 
@@ -48,13 +48,12 @@ const ProductSearch = (props: Props) => {
   };
 
   return (
-    <div
-      className={`hidden md:block relative mx-2 transition-all duration-500 ease-linear `}
-      style={{
-        width: isFocused ? "30rem" : "24rem",
-      }}
+    <motion.div
+      className="hidden md:block relative mx-2"
+      animate={{ width: isFocused ? "30rem" : "18rem", }}
+      transition={{ duration: 0.35, ease: "easeInOut" }}
     >
-      <InputGroup className="hidden lg:flex bg-[#F0F0F0] mr-3 lg:mr-10">
+      <InputGroup className="hidden lg:flex bg-[#F0F0F0] mr-3 ">
         <InputGroup.Text>
           {isLoading ? (
             <Loader className="animate-spin text-primary" />
@@ -70,7 +69,7 @@ const ProductSearch = (props: Props) => {
           onChange={(e) => setSearch(e.target.value)}
           type="search"
           name="search"
-          placeholder="Search for products..."
+          placeholder={locale === 'en' ? "Search for products..." : "البحث عن المنتجات..."}
           className="bg-transparent placeholder:text-black/40"
         />
       </InputGroup>
@@ -126,10 +125,10 @@ const ProductSearch = (props: Props) => {
                       </p>
                       <div className="flex gap-2">
                         <p className="text-xs text-gray-600 line-through">
-                          {Number(product.base_price || 0)?.toLocaleString()} USD
+                          {Number(product.base_price || 0)?.toLocaleString()} AED
                         </p>
                         <p className="text-xs text-gray-600">
-                          {Number(product.base_special_price || 0)?.toLocaleString()} USD
+                          {Number(product.base_special_price || 0)?.toLocaleString()} AED
                         </p>
                       </div>
                     </div>
@@ -142,7 +141,7 @@ const ProductSearch = (props: Props) => {
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 };
 

@@ -84,7 +84,7 @@ export async function Header() {
 
               <NavProfile />
             </Link>
-            <div className="block lg:hidden mr-4">
+            <div className="block lg:hidden">
               <ResTopNavbar data={data} categories={categories} is_login={""} />
             </div>
           </div>
