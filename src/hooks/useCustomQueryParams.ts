@@ -3,14 +3,14 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 
 export const useCustomQueryParams = (
   initialValue: string | null,
-  paramsName: string
+  paramsName: string,
 ) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const params = useMemo(
     () => new URLSearchParams(searchParams.toString()),
-    [searchParams]
+    [searchParams],
   );
 
   const [queryParam, setQueryParam] = useState<string | null>(initialValue);
@@ -43,7 +43,7 @@ export const useCustomQueryParams = (
       const updatedQueryString = params.toString();
       router.replace(updatedQueryString ? `?${updatedQueryString}` : pathname);
     },
-    [params, router, pathname]
+    [params, router, pathname],
   );
 
   const createQueryString = (name: string, value: string | null) => {
@@ -60,7 +60,7 @@ export const useCustomQueryParams = (
 export const createQueryString = (
   params: URLSearchParams,
   name: string,
-  value: string
+  value: string,
 ) => {
   params.set(name, value);
   return params.toString();

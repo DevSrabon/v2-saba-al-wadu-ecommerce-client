@@ -8,10 +8,10 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
-import { Button } from '@/components/ui/button';
-import { X } from 'lucide-react';
-import { ReactNode, useState } from 'react';
+} from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
+import { X } from "lucide-react";
+import { ReactNode, useState } from "react";
 
 type AlertProps = {
   trigger: ReactNode;
@@ -26,8 +26,8 @@ export function Alert({
   trigger,
   title,
   description,
-  confirmLabel = 'Confirm',
-  cancelLabel = 'Cancel',
+  confirmLabel = "Confirm",
+  cancelLabel = "Cancel",
   onConfirm,
 }: AlertProps) {
   const [open, setOpen] = useState(false);
@@ -39,12 +39,12 @@ export function Alert({
       </AlertDialogTrigger>
       <AlertDialogContent>
         <Button
-          variant='ghost'
-          size='icon'
-          className='absolute right-4 top-4 border rounded-full bg-red-500 text-white'
+          variant="ghost"
+          size="icon"
+          className="absolute right-4 top-4 border rounded-full bg-red-500 text-white"
           onClick={() => setOpen(false)}
         >
-          <X className='h-5 w-5' />
+          <X className="h-5 w-5" />
         </Button>
         <AlertDialogHeader>
           <AlertDialogTitle>{title}</AlertDialogTitle>

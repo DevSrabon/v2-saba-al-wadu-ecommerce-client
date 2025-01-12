@@ -7,7 +7,7 @@ import { MenuItem } from "./MenuItem";
 import { MenuList } from "./MenuList";
 import MobileProductSearch from "./MobileProductSearch";
 
-import { NavCart, NavWishList } from "./nav-items";
+import { NavCart, NavProfile, NavWishList } from "./nav-items";
 import { NavMenu } from "./navbar.types";
 import ProductSearch from "./ProductSearch";
 import ResTopNavbar from "./ResTopNavbar";
@@ -41,63 +41,53 @@ export async function Header() {
     <nav className="top-0 bg-white z-20 sticky px-2 lg:px-5">
       <div className="flex relative max-w-frame mx-auto items-center justify-between lg:justify-start py-2 lg:py-3 ">
         <div className="flex items-center">
-          <div className="block lg:hidden mr-4">
-            <ResTopNavbar data={data} categories={categories} is_login={""} />
-          </div>
-          <Link
-            href="/"
 
-          >
-            <Image src='/logo.png' priority alt="Saba Al Wadu logo" width={100} height={100}
-              className="lg:max-w-[100px] lg:max-h-[100px]" />
+          <Link href="/">
+            <Image
+              src="/logo.png"
+              priority
+              alt="Saba Al Wadu logo"
+              width={100}
+              height={100}
+              className="lg:max-w-[100px] lg:max-h-[100px]"
+            />
           </Link>
           <NavigationMenu className="hidden lg:flex mr-2 lg:mr-7">
             <NavigationMenuList>
               <>
                 <MenuItem categories={categories} />
-                <div>
-
-                </div>
+                <div></div>
                 {data?.map((item) => (
-                  <MenuList label={item.label} key={item.id} href={item.url as string} active={item.id === 1} />
+                  <MenuList
+                    label={item.label}
+                    key={item.id}
+                    href={item.url as string}
+                    active={item.id === 1}
+                  />
                 ))}
               </>
             </NavigationMenuList>
           </NavigationMenu>
         </div>
-        <div className="flex w-full justify-end">
+        <div className="flex w-full justify-end items-center">
           <ProductSearch />
-          <MobileProductSearch />
-          {/* <CartBtn /> */}
-          <NavWishList />
-          <NavCart />
-          <Link
-            href={is_login ? "/user-profile/my-account" : "/login"}
-            className="p-1 flex gap-1.5 items-center group "
-          >
-            {profile_logo ? (
-              <Image
-                src={profile_logo}
-                width={100}
-                height={100}
-                alt="profile image"
-                className="max-w-[22px] max-h-[22px] rounded-full"
-              />
-            ) : (
-              <Image
-                priority
-                src="/icons/user.svg"
-                height={100}
-                width={100}
-                alt="user"
-                className="max-w-[22px] max-h-[22px]"
-              />
-            )}
+          <div className="flex items-center min-w-[16rem] justify-end">
+            <MobileProductSearch />
 
-            <span className="group-hover:underline">
-              {is_login ? "Profile" : "Login"}
-            </span>
-          </Link>
+            {/* <CartBtn /> */}
+            <NavWishList />
+            <NavCart />
+            <Link
+              href={is_login ? "/user-profile/my-account" : "/login"}
+              className="p-1 flex gap-1.5 items-center group "
+            >
+
+              <NavProfile />
+            </Link>
+            <div className="block lg:hidden mr-4">
+              <ResTopNavbar data={data} categories={categories} is_login={""} />
+            </div>
+          </div>
         </div>
       </div>
     </nav>

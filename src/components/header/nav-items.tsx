@@ -24,11 +24,11 @@ export const NavProfile = () => {
 };
 export const NavWishList = () => {
   return (
-    <div className=" ">
+    <div className="h-full ">
       <div>
         <button
           type="button"
-          className="flex gap-1 items-center dark:text-gray-300  hover:bg-gray-100 hover:text-gray-800 rounded-md px-2 py-2 text-sm font-medium text-gray-600"
+          className="flex gap-1  items-center dark:text-gray-300  hover:bg-gray-100 hover:text-gray-800 rounded-md px-2 py-2 text-sm font-medium text-gray-600"
         >
           <Heart />
           {/* <span className="sr-only lg:not-sr-only">Abdur Shobur</span> */}
@@ -63,9 +63,8 @@ export const NavItem = ({
   return (
     <a
       href="#"
-      className={`rounded-md px-2 md:px-3 py-1 md:py-2 text-sm font-medium text-gray-600 dark:text-gray-300  hover:bg-gray-100 hover:text-gray-800 ${
-        active && "bg-gray-100 text-gray-800"
-      }`}
+      className={`rounded-md px-2 md:px-3 py-1 md:py-2 text-sm font-medium text-gray-600 dark:text-gray-300  hover:bg-gray-100 hover:text-gray-800 ${active && "bg-gray-100 text-gray-800"
+        }`}
       aria-current="page"
     >
       {name}

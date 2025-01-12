@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -7,10 +7,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog';
-import { cn } from '@/lib/utils';
-import { ClassValue } from 'clsx';
-import { ReactNode } from 'react';
+} from "@/components/ui/dialog";
+import { cn } from "@/lib/utils";
+import { ClassValue } from "clsx";
+import { ReactNode } from "react";
 
 type CustomDialogProps = {
   trigger: ReactNode;
@@ -31,7 +31,7 @@ export function Modal({
   description,
   children,
   onSubmit,
-  submitLabel = 'Save changes',
+  submitLabel = "Save changes",
   hideFooter = false,
   open,
   onOpenChange,
@@ -42,8 +42,8 @@ export function Modal({
       <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent
         className={cn(
-          'max-h-screen overflow-y-auto overflow-x-hidden w-full',
-          className
+          "max-h-screen overflow-y-auto overflow-x-hidden w-full",
+          className,
         )}
       >
         <DialogHeader>
@@ -53,7 +53,7 @@ export function Modal({
         {children}
         {hideFooter && (
           <DialogFooter>
-            <Button type='submit' onClick={onSubmit}>
+            <Button type="submit" onClick={onSubmit}>
               {submitLabel}
             </Button>
           </DialogFooter>

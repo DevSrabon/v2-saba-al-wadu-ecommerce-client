@@ -1,15 +1,17 @@
 "use client";
+
 import InputGroup from "@/components/ui/input-group";
 import { useDebounce } from "@/hooks/useDebounch";
 import { getImageLink } from "@/lib/utils";
 import { useGetProductSearchQuery } from "@/store/features/api/commonApiSlice";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { Loader } from "lucide-react";
+import { Loader, Search } from "lucide-react";
 import { useLocale } from "next-intl";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { Skeleton } from "../ui/skeleton";
 
 type Props = {};
 
@@ -17,6 +19,7 @@ const ProductSearch = (props: Props) => {
   const router = useRouter();
   const [isFocused, setIsFocused] = useState(false); // Track focus state
   const [search, setSearch] = useState("");
+  const locale = useLocale();
 
   const debounce_search = useDebounce(search, 1000);
 
@@ -28,12 +31,13 @@ const ProductSearch = (props: Props) => {
   const results = data?.data || [];
 
   const container = {
-    hidden: { opacity: 0, y: 5 },
+    hidden: { opacity: 0, y: 10 },
     show: {
       opacity: 1,
       y: 0,
       transition: {
         staggerChildren: 0.1,
+        duration: 0.5,
       },
     },
   };
@@ -42,26 +46,20 @@ const ProductSearch = (props: Props) => {
     hidden: { y: 20, opacity: 0 },
     show: { y: 0, opacity: 1 },
   };
-  const locale = useLocale();
 
   return (
-    <div className={`hidden md:block relative mx-2 transition-all duration-500 ease-linear ${isFocused ? "w-full" : "w-96"
-      }`}>
-      <InputGroup
-        className={`hidden lg:flex  bg-[#F0F0F0] mr-3 lg:mr-10`}
-      >
+    <div
+      className={`hidden md:block relative mx-2 transition-all duration-500 ease-linear `}
+      style={{
+        width: isFocused ? "30rem" : "24rem",
+      }}
+    >
+      <InputGroup className="hidden lg:flex bg-[#F0F0F0] mr-3 lg:mr-10">
         <InputGroup.Text>
           {isLoading ? (
             <Loader className="animate-spin text-primary" />
           ) : (
-            <Image
-              priority
-              src="/icons/search.svg"
-              height={20}
-              width={20}
-              alt="search"
-              className="min-w-5 min-h-5"
-            />
+            <Search className="text-gray-500" />
           )}
         </InputGroup.Text>
         <InputGroup.Input
@@ -84,17 +82,25 @@ const ProductSearch = (props: Props) => {
             exit="hidden"
             variants={container}
             className="absolute z-40 my-2 w-full p-2 bg-white rounded-md shadow-md border border-gray-100 max-h-64 overflow-y-auto
-            scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100
-            hover:scrollbar-thumb-gray-400
-            [&::-webkit-scrollbar]:w-2
-            [&::-webkit-scrollbar-track]:bg-gray-100
-            [&::-webkit-scrollbar-thumb]:bg-gray-300
-            [&::-webkit-scrollbar-thumb]:rounded-full
-            [&::-webkit-scrollbar-track]:rounded-full
-            [&:hover::-webkit-scrollbar-thumb]:bg-gray-400"
+              scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100
+              hover:scrollbar-thumb-gray-400
+              [&::-webkit-scrollbar]:w-2
+              [&::-webkit-scrollbar-track]:bg-gray-100
+              [&::-webkit-scrollbar-thumb]:bg-gray-300
+              [&::-webkit-scrollbar-thumb]:rounded-full
+              [&::-webkit-scrollbar-track]:rounded-full
+              [&:hover::-webkit-scrollbar-thumb]:bg-gray-400"
           >
-            {results?.length > 0 ? (
-              results?.map((product) => (
+            {isLoading ? (
+              <div className="p-2 flex gap-2">
+                <Skeleton className="w-12 h-12 rounded-md" />
+                <div>
+                  <Skeleton className="w-16 h-4" />
+                  <Skeleton className="w-20 h-4 my-2" />
+                </div>
+              </div>
+            ) : isSuccess && results.length > 0 ? (
+              results.map((product) => (
                 <motion.div
                   key={product.p_id}
                   variants={item}
@@ -105,7 +111,7 @@ const ProductSearch = (props: Props) => {
                     setIsFocused(false); // Collapse after navigation
                   }}
                 >
-                  <motion.div className="flex items-center gap-2 p-1.5 rounded hover:bg-gray-50 transition-colors duration-200">
+                  <div className="flex items-center gap-2 p-1.5 rounded hover:bg-gray-50 transition-colors duration-200">
                     <Image
                       priority
                       src={getImageLink(product.image)}
@@ -116,28 +122,22 @@ const ProductSearch = (props: Props) => {
                     />
                     <div className="min-w-0 flex-1">
                       <p className="font-medium text-sm text-gray-800 truncate group-hover:text-blue-600 transition-colors duration-200">
-                        {locale === "en"
-                          ? product.p_name_en
-                          : product.p_name_ar}
+                        {locale === "en" ? product.p_name_en : product.p_name_ar}
                       </p>
                       <div className="flex gap-2">
                         <p className="text-xs text-gray-600 line-through">
-                          {Number(product.base_price || 0)?.toLocaleString()}{" "}
-                          USD
+                          {Number(product.base_price || 0)?.toLocaleString()} USD
                         </p>
                         <p className="text-xs text-gray-600">
-                          {Number(
-                            product.base_special_price || 0
-                          )?.toLocaleString()}{" "}
-                          BDT
+                          {Number(product.base_special_price || 0)?.toLocaleString()} USD
                         </p>
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
                 </motion.div>
               ))
             ) : (
-              <div className="p-2 rounded-md">No Product Found</div>
+              <div className="p-2 rounded-lg">No Product Found</div>
             )}
           </motion.div>
         )}
