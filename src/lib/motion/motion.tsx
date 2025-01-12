@@ -29,7 +29,7 @@ export function MotionView({ children }: { children: React.ReactNode }) {
 				opacity: 1,
 
 				transition: {
-					delay: 0.3,
+					delay: 0.5,
 					duration: 0.5,
 				},
 			}}
@@ -53,7 +53,7 @@ export function MotionShow({
 			whileInView={{
 				opacity: 1,
 				transition: {
-					delay: 0.3,
+					delay: 0.5,
 					duration: 0.5,
 				},
 			}}
@@ -67,20 +67,22 @@ export function MotionItem({
 	children,
 	i,
 	className,
+	once = true,
 }: {
 	children: React.ReactNode;
 	i: number;
 	className?: string;
+	once?: boolean;
 }) {
 	return (
 		<motion.div
 			className={className}
-			viewport={{ once: true }}
+			viewport={{ once }}
 			initial={{ opacity: 0 }}
 			whileInView={{
 				opacity: 1,
 				transition: {
-					duration: 0.15,
+					duration: 0.5,
 					delay: i * 0.15,
 				},
 			}}

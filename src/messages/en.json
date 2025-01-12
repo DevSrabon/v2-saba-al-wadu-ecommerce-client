@@ -1,25 +1,26 @@
 {
-  "NavbarLinks": {
-    "home": "Home",
-    "homeTitle": "Home page",
-    "about": "About",
-    "aboutTitle": "About page",
-    "profile": "Profile",
-    "profileTitle": "Profile page"
-  },
-  "HomePage": {
-    "title": "Landing page"
-  },
-  "AboutPage": {
-    "title": "About"
-  },
-  "ProfilePage": {
-    "title": "Profile"
-  },
-  "BasicText": {
-    "seeMore": "See more"
-  },
-  "Cart": {
-    "addToCard": "Add To Card"
-  }
+	"NavbarLinks": {
+		"home": "Home",
+		"homeTitle": "Home page",
+		"about": "About",
+		"aboutTitle": "About page",
+		"profile": "Profile",
+		"profileTitle": "Profile page"
+	},
+	"HomePage": {
+		"title": "Landing page"
+	},
+	"AboutPage": {
+		"title": "About"
+	},
+	"ProfilePage": {
+		"title": "Profile"
+	},
+	"BasicText": {
+		"seeMore": "See more",
+		"bestSelling": "Best Selling"
+	},
+	"Cart": {
+		"addToCard": "Add To Card"
+	}
 }
