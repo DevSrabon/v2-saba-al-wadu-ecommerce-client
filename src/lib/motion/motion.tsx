@@ -83,13 +83,14 @@ export function MotionItem({
 			whileHover={{
 				scale: 1.05,
 			}}
-			transition={{ duration: 0.5, yoyo: Infinity }}
+			transition={{ duration: 0.3, yoyo: Infinity }}
 			whileInView={{
 				opacity: 1,
-				y: -50,
+				y: 0,
 				transition: {
 					duration: 0.5,
-					delay: i * 0.15,
+					staggerChildren: 0.3,
+					ease: 'easeOut',
 				},
 			}}
 		>
