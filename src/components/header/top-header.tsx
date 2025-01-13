@@ -7,17 +7,17 @@ export function TopHeader() {
 	const t = useTranslations('HomePage');
 
 	return (
-		<div className="mx-auto max-w-full px-2 py-2 lg:px-6 flex justify-between items-center sticky bg-lime-400">
+		<div className="mx-auto max-w-full px-2 py-2 lg:px-6 flex justify-between items-center sticky bg-white shadow-lg border border-b">
 			{/* <h1>{t("title")}</h1> */}
-			<div className="flex-shrink-0 text-white ">
+			<div className="flex-shrink-0 text-stone-700 ">
 				<a className="hover:underline sr-only lg:not-sr-only" href="#">
 					contact@gmail.com
 				</a>
 			</div>
-			<div className="flex-shrink-0 text-white ">
+			<div className="flex-shrink-0 text-stone-700 ">
 				<TopPromo />
 			</div>
-			<div className="flex-shrink-0 text-white flex items-center gap-1">
+			<div className="flex-shrink-0 text-stone-700 flex items-center gap-1">
 				<LanguageSwitcher />
 				<CurrencySwitcher />
 			</div>
