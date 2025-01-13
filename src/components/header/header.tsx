@@ -11,6 +11,7 @@ import { NavCart, NavProfile, NavWishList } from "./nav-items";
 import { NavMenu } from "./navbar.types";
 import ProductSearch from "./ProductSearch";
 import ResTopNavbar from "./ResTopNavbar";
+import { TopHeader } from "./top-header";
 const data: NavMenu = [
   {
     id: 1,
@@ -38,10 +39,10 @@ export async function Header() {
   const profile_logo = false;
   const is_login = false;
   return (
-    <nav className="top-0 bg-white z-20 sticky px-2 lg:px-5">
-      <div className="flex relative max-w-frame mx-auto items-center justify-between lg:justify-start py-2 lg:py-3 ">
+    <nav className="top-0 bg-white z-20 sticky ">
+      <TopHeader />
+      <div className="flex relative max-w-frame mx-auto items-center justify-between lg:justify-start py-2 lg:py-3 px-2 lg:px-5">
         <div className="flex items-center">
-
           <Link href="/">
             <Image
               src="/logo.png"
@@ -81,7 +82,6 @@ export async function Header() {
               href={is_login ? "/user-profile/my-account" : "/login"}
               className="p-1 flex gap-1.5 items-center group "
             >
-
               <NavProfile />
             </Link>
             <div className="block lg:hidden">
