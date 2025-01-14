@@ -25,7 +25,9 @@ export const RecursiveCategoryList = ({
 					{/* Render subcategories recursively */}
 					{category.subcategories && category.subcategories.length > 0 && (
 						<ul className="pl-6 mt-2 space-y-4">
-							<RecursiveCategoryList categories={category?.subcategories} />
+							<RecursiveCategoryList
+								categories={category?.subcategories as any[]}
+							/>
 						</ul>
 					)}
 				</li>
