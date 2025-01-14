@@ -6,7 +6,7 @@ import { SeeMoreButton } from '../ui/see-more-button';
 
 const Products = async () => {
 	const { data }: { data: ICategoryHome[] } = await getFetch({
-		url: 'ecomm/product/home?limit=10&skip=0',
+		url: 'ecomm/product/home?limit=9&skip=0',
 	});
 	const locale = await getLocale();
 

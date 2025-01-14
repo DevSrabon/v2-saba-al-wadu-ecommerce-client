@@ -23,13 +23,13 @@ export function ProductCard01({
 					src={imageURL + product.all_images[0]}
 					alt="product image"
 				/>
-				<span className="absolute top-0 left-0 m-2 rounded-full bg-[#b7a308] px-2 text-center text-sm font-medium text-white">
+				<span className="absolute top-0 left-0 m-2 rounded-full bg-primary-500 px-2 text-center text-sm font-medium text-white">
 					39% OFF
 				</span>
 			</a>
 			<div className="mt-4 px-5 pb-14">
 				<a href="#">
-					<h5 className="text-xl tracking-tight text-slate-900  hover:text-[#b7a308] transition-all duration-300">
+					<h5 className="text-xl tracking-tight text-slate-900  hover:text-primary-500 transition-all duration-300">
 						{locale === 'en' ? product.p_name_en : product.p_name_ar}
 					</h5>
 				</a>
@@ -65,7 +65,7 @@ export function ProductCard01({
 				<div className="absolute bottom-4 left-4 right-4 ">
 					<a
 						href="#"
-						className="flex items-center justify-center rounded-md bg-[#b7a308] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-300"
+						className="flex items-center justify-center rounded-md bg-primary-500 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-primary-600 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-300"
 					>
 						<ShoppingCart className="mr-2" />
 						{locale === 'en' ? 'Add To Cart' : 'أضف إلى السلة'}
