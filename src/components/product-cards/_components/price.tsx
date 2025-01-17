@@ -6,7 +6,6 @@ export default function ProductPrice({ product }: { product: IProduct }) {
   const { code, rate } = useAppSelector((state) => state.currency);
   const base_special_price = Number(product.base_special_price);
   const base_price = Number(product.base_price);
-  console.log(product.base_special_price, base_price);
 
   return (
     <p>

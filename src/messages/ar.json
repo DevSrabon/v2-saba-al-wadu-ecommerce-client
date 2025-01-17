@@ -1,26 +1,33 @@
 {
-	"NavbarLinks": {
-		"home": "الرئيسية",
-		"homeTitle": "صفحة الرئيسية",
-		"about": "من نحن",
-		"aboutTitle": "صفحة من نحن",
-		"profile": "الملف الشخصي",
-		"profileTitle": "صفحة الملف الشخصي"
-	},
-	"HomePage": {
-		"title": "صفحة الهبوط"
-	},
-	"AboutPage": {
-		"title": "من نحن"
-	},
-	"ProfilePage": {
-		"title": "الملف الشخصي"
-	},
-	"BasicText": {
-		"seeMore": "المزيد",
-		"bestSelling": "الاكثر مبيعا"
-	},
-	"Cart": {
-		"addToCard": "أضف إلى البطاقة"
-	}
+  "NavbarLinks": {
+    "categories": "فئات",
+    "new_arrivals": "الوافدين الجدد",
+    "best_selling": "من نحن",
+    "aboutTitle": "صفحة من نحن",
+    "profile": "الملف الشخصي",
+    "profileTitle": "صفحة الملف الشخصي"
+  },
+  "HomePage": {
+    "title": "صفحة الهبوط"
+  },
+  "AboutPage": {
+    "title": "من نحن"
+  },
+  "ProfilePage": {
+    "title": "الملف الشخصي"
+  },
+  "BasicText": {
+    "seeMore": "المزيد",
+    "bestSelling": "الاكثر مبيعا"
+  },
+  "Cart": {
+    "addToCard": "أضف إلى البطاقة"
+  },
+  "Promo": {
+    "title": "لدينا عرض:",
+    "on_all_products": "على جميع المنتجات",
+    "valid_till": "صالحة حتى: {date}",
+    "use_code": "استخدم الرمز: {coupon_code}",
+    "copied": "تم النسخ!"
+  }
 }

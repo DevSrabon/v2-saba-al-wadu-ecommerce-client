@@ -12,6 +12,7 @@ import CategoriesSectionItem from "../category/categoryItems";
 
 import { ICategories } from "@/types/commonTypes";
 import { Menu } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import React from "react";
 import { NavMenu } from "./navbar.types";
@@ -23,6 +24,7 @@ interface Props {
 }
 
 const ResTopNavbar = ({ data, categories, is_login }: Props) => {
+  const t = useTranslations();
   return (
     <Sheet>
       <SheetTrigger asChild className="cursor-pointer">
@@ -52,7 +54,9 @@ const ResTopNavbar = ({ data, categories, is_login }: Props) => {
           ))}
         </div>
 
-        <span className="text-gray-400 text-sm">All Categories</span>
+        <span className="text-gray-400 text-sm">
+          {t("NavbarLinks.categories")}
+        </span>
         <Separator className="mb-1" />
 
         <CategoriesSectionItem categories={categories} />

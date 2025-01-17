@@ -1,26 +1,34 @@
 {
-	"NavbarLinks": {
-		"home": "Home",
-		"homeTitle": "Home page",
-		"about": "About",
-		"aboutTitle": "About page",
-		"profile": "Profile",
-		"profileTitle": "Profile page"
-	},
-	"HomePage": {
-		"title": "Landing page"
-	},
-	"AboutPage": {
-		"title": "About"
-	},
-	"ProfilePage": {
-		"title": "Profile"
-	},
-	"BasicText": {
-		"seeMore": "See more",
-		"bestSelling": "Best Selling"
-	},
-	"Cart": {
-		"addToCard": "Add To Card"
-	}
+  "NavbarLinks": {
+    "categories": "Categories",
+    "new_arrivals": "New Arrivals",
+    "best_selling": "Best Selling",
+    "aboutTitle": "About page",
+    "profile": "Profile",
+    "profileTitle": "Profile page"
+  },
+  "HomePage": {
+    "title": "Landing page"
+  },
+  "AboutPage": {
+    "title": "About"
+  },
+  "ProfilePage": {
+    "title": "Profile"
+  },
+  "BasicText": {
+    "seeMore": "See more",
+    "bestSelling": "Best Selling"
+  },
+  "Cart": {
+    "addToCard": "Add To Card"
+  },
+
+  "Promo": {
+    "title": "WE HAVE A PROMO:",
+    "on_all_products": "ON ALL PRODUCTS",
+    "valid_till": "Valid till: {date}",
+    "use_code": "Use Code: {coupon_code}",
+    "copied": "Copied!"
+  }
 }

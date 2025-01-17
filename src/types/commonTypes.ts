@@ -21,7 +21,7 @@ export interface ISearchProduct {
 export interface ICategories {
   id: number;
   cate_name_en: string;
-  cate_name_bn: string;
+  cate_name_ar: string;
   cate_slug: string;
   cate_status: number;
   cate_image: string;

@@ -4,6 +4,7 @@ import { useCustomQueryParams } from "@/hooks/useCustomQueryParams";
 import { cn } from "@/lib/utils";
 import { ICategories } from "@/types/commonTypes";
 import { AnimatePresence, motion } from "framer-motion";
+import { useLocale } from "next-intl";
 import { useState } from "react";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
@@ -14,16 +15,16 @@ interface Props {
 const CategoriesSectionItem = ({ categories }: Props) => {
   const { handleCheckboxChange, queryParam } = useCustomQueryParams(
     null,
-    "category",
+    "category"
   );
-
+  const local = useLocale();
   const [expandedCategories, setExpandedCategories] = useState<number[]>([]);
 
   const toggleCategory = (categoryId: number) => {
     setExpandedCategories((prev) =>
       prev.includes(categoryId)
         ? prev.filter((id) => id !== categoryId)
-        : [...prev, categoryId],
+        : [...prev, categoryId]
     );
   };
 
@@ -38,10 +39,10 @@ const CategoriesSectionItem = ({ categories }: Props) => {
           onClick={() => handleClick(category.cate_slug)}
           className={cn(
             "flex-grow text-black/60 hover:text-primary",
-            queryParam === category.cate_slug && "text-primary underline",
+            queryParam === category.cate_slug && "text-primary underline"
           )}
         >
-          {category.cate_name_en}
+          {local === "ar" ? category.cate_name_ar : category.cate_name_en}
         </div>
         {category.children && category.children.length > 0 && (
           <motion.button

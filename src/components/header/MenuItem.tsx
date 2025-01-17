@@ -1,44 +1,57 @@
 "use client";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {
-  NavigationMenuLink,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
-import { cn } from "@/lib/utils";
 import { ICategories } from "@/types/commonTypes";
 import { motion } from "framer-motion";
-
 import { ChevronDown } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
+import { useState } from "react";
 
 type MenuItemProps = {
   categories: ICategories[] | undefined;
 };
 
 export function MenuItem({ categories }: MenuItemProps) {
+  const [open, setOpen] = useState(false);
+  const t = useTranslations();
+  const handleMouseEnter = () => setOpen(true);
+  const handleMouseLeave = () => setOpen(false);
+
   return (
-    <DropdownMenu>
+    <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger asChild>
-        <NavigationMenuLink
-          className={cn([
-            navigationMenuTriggerStyle(),
-            "font-normal px-3 cursor-pointer",
-          ])}
+        <Link
+          href="/"
+          className="font-normal px-3 cursor-pointer flex items-center border-none"
         >
-          Categories
-          <ChevronDown className="ml-2 h-4 w-4" />
-        </NavigationMenuLink>
+          {t("NavbarLinks.categories")}
+          <ChevronDown
+            className={`ml-2 h-4 w-4 transform transition-transform duration-300 ${
+              open ? "rotate-180" : ""
+            }`}
+          />
+        </Link>
       </DropdownMenuTrigger>
-      <DropdownMenuContent asChild className="shadow-lg">
+      <DropdownMenuContent
+        className="w-screen max-w-2xl p-4 ml-28 mt-5 shadow-lg"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         <motion.div
-          initial={{ opacity: 0, y: -10, scale: 0 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
-          className="w-screen max-w-2xl p-4 ml-28 mt-5"
+          initial="hidden"
+          animate="show"
+          variants={{
+            hidden: { opacity: 0 },
+            show: {
+              opacity: 1,
+              transition: { staggerChildren: 0.05, delayChildren: 0.1 },
+            },
+          }}
         >
           <div className="flex flex-wrap relative">
             <div className="absolute inset-0 pointer-events-none">
@@ -48,14 +61,17 @@ export function MenuItem({ categories }: MenuItemProps) {
             </div>
 
             {categories?.map((category) => (
-              <div
+              <motion.div
                 key={category.id}
-                className={cn(
-                  "relative w-1/2 md:w-1/3 lg:w-1/4 p-4" // Flex widths for responsive design
-                )}
+                className="relative w-1/2 md:w-1/3 lg:w-1/4 p-4"
+                variants={{
+                  hidden: { opacity: 0, y: -10 },
+                  show: { opacity: 1, y: 0 },
+                }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
               >
                 <CategoryMenuItem category={category} />
-              </div>
+              </motion.div>
             ))}
           </div>
         </motion.div>
@@ -64,34 +80,26 @@ export function MenuItem({ categories }: MenuItemProps) {
   );
 }
 
-function CategoryMenuItem({
-  category,
-  child,
-}: {
-  category: ICategories;
-  child?: boolean;
-}) {
+function CategoryMenuItem({ category }: { category: ICategories }) {
+  const locale = useLocale();
   return (
     <motion.div
-      initial={{ opacity: 0, x: -10 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -10 }}
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
       transition={{ duration: 0.2, ease: "easeOut" }}
       className="space-y-2"
     >
       <Link
         href={`/shop?category=${category.cate_slug}`}
-        className={cn(
-          "font-semibold text-sm hover:text-green-400 duration-100",
-          child && "font-normal text-muted-foreground"
-        )}
+        className="font-semibold text-sm hover:text-green-400 duration-100"
       >
-        {category.cate_name_en}
+        {locale === "ar" ? category.cate_name_ar : category.cate_name_en}
       </Link>
       {category.children.length > 0 && (
         <ul className="space-y-1">
-          {category?.children?.map((child, index) => (
-            <CategoryMenuItem category={child} child key={index} />
+          {category.children.map((child, index) => (
+            <CategoryMenuItem category={child} key={index} />
           ))}
         </ul>
       )}

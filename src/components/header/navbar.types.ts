@@ -4,6 +4,7 @@ export type MenuItem = {
   id: number;
   type: "MenuItem" | "MenuList";
   label: string;
+  label_ar: string;
   url?: string;
 };
 
