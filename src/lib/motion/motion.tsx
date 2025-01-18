@@ -83,6 +83,7 @@ export function MotionItem({
 			whileHover={{
 				scale: 1.03,
 				boxShadow: '0px 10px 15px -3px rgba(0,0,0,0.1)',
+				transition: { duration: 0.3, ease: 'easeIn' },
 			}}
 			transition={{ duration: 0.3, yoyo: Infinity }}
 			whileInView={{

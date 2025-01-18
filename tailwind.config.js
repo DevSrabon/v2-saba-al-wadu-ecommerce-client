@@ -29,6 +29,19 @@ const config = {
 					800: 'hsl(var(--primary-hue), var(--primary-saturation), 15%)',
 					900: 'hsl(var(--primary-hue), var(--primary-saturation), 10%)',
 				},
+
+				main: {
+					50: 'var(--main-color-50)',
+					100: 'var(--main-color-100)',
+					200: 'var(--main-color-200)',
+					300: 'var(--main-color-300)',
+					400: 'var(--main-color-400)',
+					500: 'var(--main-color-500)',
+					600: 'var(--main-color-600)',
+					700: 'var(--main-color-700)',
+					800: 'var(--main-color-800)',
+					900: 'var(--main-color-900)',
+				},
 			},
 			keyframes: {
 				'accordion-down': {
