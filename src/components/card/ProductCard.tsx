@@ -1,4 +1,4 @@
-import { EmblaCarousel } from "./CartSlider";
+import { ShadCNCarousel } from "./CartSlider";
 
 interface ProductCardProps {
   name: string;
@@ -28,7 +28,7 @@ const ProductCard = ({
 
       {/* Product Image */}
       {/* <img src={image} alt={name} className="w-full h-44 object-contain mb-3" /> */}
-      <EmblaCarousel images={images} />
+      <ShadCNCarousel images={images} />
 
       {/* Product Title */}
       <h3 className="text-sm text-gray-800 mb-2 font-medium">{name}</h3>

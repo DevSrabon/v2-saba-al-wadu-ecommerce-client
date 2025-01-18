@@ -1,5 +1,6 @@
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useCallback } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useRouter, useSearchParams } from "next/navigation";
+import { useCallback } from "react";
 
 export const useDeleteQueryParam = () => {
   const router = useRouter();
@@ -10,7 +11,7 @@ export const useDeleteQueryParam = () => {
     (name: string) => {
       params.delete(name);
       const updatedQueryString = params.toString();
-      router.replace(updatedQueryString ? `?${updatedQueryString}` : '?');
+      router.replace(updatedQueryString ? `?${updatedQueryString}` : "?");
     },
     [params, router]
   );
