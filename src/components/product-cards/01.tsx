@@ -2,6 +2,7 @@ import { imageURL } from '@/constants';
 import { IProduct } from '@/types';
 import { ShoppingCart } from 'lucide-react';
 import ProductPrice from './_components/price';
+import Link from 'next/link';
 
 export function ProductCard01({
 	product,
@@ -13,9 +14,9 @@ export function ProductCard01({
 	const filledStars = Math.floor(Number(product.avg_rating));
 	return (
 		<>
-			<a
+			<Link
 				className="relative mx-3 mt-3 flex h-80 overflow-hidden rounded-xl  "
-				href="#"
+				href={`/${locale}/shop/${product.p_slug}`}
 			>
 				{/* <EmblaCarousel images={product.all_images} /> */}
 				<img
@@ -26,13 +27,13 @@ export function ProductCard01({
 				<span className="absolute top-0 left-0 m-2 rounded-full bg-primary-500 px-2 text-center text-sm font-medium text-white">
 					39% OFF
 				</span>
-			</a>
+			</Link>
 			<div className="mt-4 px-5 pb-14">
-				<a href="#">
+				<Link href={`/${locale}/shop/${product.p_slug}`}>
 					<h5 className="text-xl tracking-tight text-slate-900  hover:text-primary-500 transition-all duration-300">
 						{locale === 'en' ? product.p_name_en : product.p_name_ar}
 					</h5>
-				</a>
+				</Link>
 				<div className="mt-2 mb-5 flex items-start justify-between flex-col">
 					<ProductPrice product={product} />
 

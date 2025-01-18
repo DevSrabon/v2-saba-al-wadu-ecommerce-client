@@ -18,6 +18,18 @@
 		--primary-lightness: 37.45%; /* Base lightness */
 
 		--primary: hsl(53.14deg 91.62% 37.45%);
+
+		--main-color: #299e60;
+		--main-color-50: #e7f9ef;
+		--main-color-100: #cef2df;
+		--main-color-200: #b6eccf;
+		--main-color-300: #9ee6bf;
+		--main-color-400: #85e0af;
+		--main-color-500: #6dd9a0;
+		--main-color-600: #299e60;
+		--main-color-700: #258e56;
+		--main-color-800: #207e4c;
+		--main-color-900: #1c6d42;
 	}
 
 	/* .dark {
@@ -49,4 +61,44 @@ h4,
 h5,
 h6 {
 	font-family: var(--font-lato);
+}
+
+.h5,
+h5 {
+	font-size: clamp(1.25rem, 1.2rem + 0.722vw, 2.25rem);
+}
+.row {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	margin-left: -12px;
+	margin-right: -12px;
+}
+.row > * {
+	-webkit-flex-shrink: 0;
+	max-width: 100%;
+	width: 100%;
+	-ms-flex-negative: 0;
+	flex-shrink: 0;
+	padding-left: 12px;
+	padding-right: 12px;
+}
+.container-lg {
+	max-width: 1680px;
+}
+
+.container {
+	-webkit-column-gap: 24px;
+	-moz-column-gap: 24px;
+	column-gap: 24px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 12px;
+	padding-right: 12px;
+	row-gap: 0;
+	width: 100%;
 }
