@@ -39,13 +39,16 @@ export async function Header() {
       <TopHeader />
       <div className="flex relative max-w-frame mx-auto items-center justify-between lg:justify-start py-2 px-2 lg:px-5 shadow-sm">
         <div className="flex items-center">
-          <Link href="/">
+          <Link
+            href="/"
+            className="w-[50px] h-[50px] lg:w-[80px] lg:h-[80px] relative"
+          >
             <Image
               src="/logo.png"
               priority
               alt="Saba Al Wadu logo"
-              width={80}
-              height={80}
+              sizes="80px"
+              fill
               className="lg:max-w-[80px] lg:max-h-[80px]"
             />
           </Link>

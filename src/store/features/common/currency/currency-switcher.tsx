@@ -1,116 +1,75 @@
-'use client';
-import { DollarSign } from 'lucide-react';
+"use client";
+import { SpinnerLoader } from "@/components/loader";
 import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuLabel,
-	DropdownMenuSeparator,
-	DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { useGetCurrencyQuery } from './currency-api-slice';
-import { SpinnerLoader } from '@/components/loader';
-import { useAppDispatch, useAppSelector } from '@/store';
-import { setCurrency } from './currency-reducer-slice';
-import { useEffect } from 'react';
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { useAppDispatch, useAppSelector } from "@/store";
+import { CircleDollarSign } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useGetCurrencyQuery } from "./currency-api-slice";
+import { setCurrency } from "./currency-reducer-slice";
 
 export function CurrencySwitcher() {
-	const dispatch = useAppDispatch();
-	const selectedCurrency = useAppSelector((state) => state.currency);
-	const { data, isError, isLoading } = useGetCurrencyQuery(undefined);
+  const dispatch = useAppDispatch();
+  const { data, isError, isLoading } = useGetCurrencyQuery(undefined);
+  const selectedCurrency = useAppSelector((state) => state.currency);
 
-	useEffect(() => {
-		// check error data and window
-		if (isLoading || isError || !data || typeof window === 'undefined') return;
+  const [currency, setLocalCurrency] = useState("USD");
 
-		// check localStorage
-		const savedCurrency = localStorage.getItem('selectedCurrency');
+  useEffect(() => {
+    if (isLoading || isError || !data?.data || typeof window === "undefined")
+      return;
 
-		if (savedCurrency) {
-			// If currency exists in localStorage, update its rate from API
-			const parsedCurrency: { code: 'USD' | 'GBP' | 'AED'; rate: number } =
-				JSON.parse(savedCurrency);
+    const savedCurrency = localStorage.getItem("selectedCurrency");
 
-			// Check if the currency code exists in the API response
-			const updatedRate = parseFloat(
-				data?.data[parsedCurrency.code.toLowerCase() as 'usd' | 'gbp' | 'aed']
-			);
+    if (savedCurrency) {
+      const parsedCurrency = JSON.parse(savedCurrency);
+      setLocalCurrency(parsedCurrency.code);
+      dispatch(setCurrency(parsedCurrency));
+    } else {
+      // Default to USD
+      const defaultCurrency = { code: "USD", rate: parseFloat(data.data.usd) };
+      setLocalCurrency(defaultCurrency.code);
+      dispatch(setCurrency(defaultCurrency));
+      localStorage.setItem("selectedCurrency", JSON.stringify(defaultCurrency));
+    }
+  }, [data, isLoading, isError, dispatch]);
 
-			// Update the rate in the state
-			dispatch(
-				setCurrency({
-					code: parsedCurrency.code,
-					rate: updatedRate || parsedCurrency.rate, // Use the rate from API, or fallback to the stored rate
-				})
-			);
-		} else {
-			// If no currency in localStorage, select the first one from API
-			const firstCurrencyCode = 'aed';
+  if (isError || !data?.data) return null;
+  if (isLoading) return <SpinnerLoader className="h-4 w-4 border-2" />;
 
-			// Check if the currency code exists in the API response
-			const firstCurrencyRate = parseFloat(
-				data?.data[firstCurrencyCode as 'usd' | 'gbp' | 'aed']
-			);
+  const currencies = [
+    { code: "AED", label: "AED", rate: parseFloat(data.data.aed) },
+    { code: "USD", label: "USD", rate: parseFloat(data.data.usd) },
+    { code: "GBP", label: "GBP", rate: parseFloat(data.data.gbp) },
+  ];
 
-			// Update the rate in the state
-			dispatch(
-				setCurrency({
-					code: firstCurrencyCode.toUpperCase(),
-					rate: firstCurrencyRate,
-				})
-			);
+  const handleCurrencyChange = (code: string) => {
+    const selected = currencies.find((c) => c.code === code);
+    if (!selected) return;
 
-			// Save the selected currency to localStorage
-			localStorage.setItem(
-				'selectedCurrency',
-				JSON.stringify({
-					code: firstCurrencyCode.toUpperCase(),
-					rate: firstCurrencyRate,
-				})
-			);
-		}
-	}, [data, isLoading, isError, dispatch]);
+    setLocalCurrency(selected.code);
+    dispatch(setCurrency({ code: selected.code, rate: selected.rate }));
+    localStorage.setItem("selectedCurrency", JSON.stringify(selected));
+  };
 
-	if (isError || !data?.data) {
-		return null;
-	}
-
-	if (isLoading) {
-		return <SpinnerLoader className="h-4 w-4 border-2" />;
-	}
-
-	// Available currencies
-	const currencies = [
-		{ code: 'AED', label: 'UAE Dirham', rate: parseFloat(data.data.aed) },
-		{ code: 'USD', label: 'US Dollar', rate: parseFloat(data.data.usd) },
-		{ code: 'GBP', label: 'British Pound', rate: parseFloat(data.data.gbp) },
-	];
-
-	// currency selection handler
-	const handleCurrencyChange = (currencyCode: string, rate: number) => {
-		dispatch(setCurrency({ code: currencyCode, rate }));
-	};
-
-	return (
-		<DropdownMenu>
-			<DropdownMenuTrigger>
-				<div className="flex items-center gap-2">
-					<DollarSign />
-					{selectedCurrency?.code && <span>{selectedCurrency.code}</span>}
-				</div>
-			</DropdownMenuTrigger>
-			<DropdownMenuContent>
-				<DropdownMenuLabel>Select Currency</DropdownMenuLabel>
-				<DropdownMenuSeparator />
-				{currencies.map((currency) => (
-					<DropdownMenuItem
-						key={currency.code}
-						onClick={() => handleCurrencyChange(currency.code, currency.rate)}
-					>
-						{currency.label} ({currency.code})
-					</DropdownMenuItem>
-				))}
-			</DropdownMenuContent>
-		</DropdownMenu>
-	);
+  return (
+    <Select onValueChange={handleCurrencyChange} value={currency}>
+      <SelectTrigger className="w-[60px] h-6 text-center p-0.5 ring-0 focus:ring-0">
+        <CircleDollarSign />
+        <SelectValue placeholder="USD" />
+      </SelectTrigger>
+      <SelectContent>
+        {currencies.map(({ code }) => (
+          <SelectItem key={code} value={code}>
+            {code}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+  );
 }

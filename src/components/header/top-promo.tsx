@@ -25,6 +25,7 @@ export const TopPromo = ({ data }: { data: HTTPResponse<any[]> }) => {
     setCopied(true);
     toast({
       description: "Coupon has been copied to clipboard",
+      color: "black",
     });
     // setTimeout(() => setCopied(false), 2000);
   };
@@ -38,11 +39,14 @@ export const TopPromo = ({ data }: { data: HTTPResponse<any[]> }) => {
     <div className="bg-yellow-100 text-yellow-700 px-2 py-1 rounded-md text-xs text-center flex items-center">
       <span className="font-bold">{t("Promo.title")}</span>{" "}
       {discount_type === "fixed" ? selectedCurrency.code : "%"}{" "}
-      {formattedDiscount} {t("Promo.on_all_products")}{" "}
-      <FaRegCopy
-        onClick={handleCopy}
-        className="ml-0.5 text-lg cursor-pointer"
-      />
+      {formattedDiscount}
+      <span className="hidden md:block">{t("Promo.on_all_products")} </span>
+      {!copied && (
+        <FaRegCopy
+          onClick={handleCopy}
+          className="ml-0.5 text-lg cursor-pointer"
+        />
+      )}
     </div>
   );
 };
