@@ -41,7 +41,7 @@ export async function Header() {
         <div className="flex items-center">
           <Link
             href="/"
-            className="w-[50px] h-[50px] lg:w-[80px] lg:h-[80px] relative"
+            className="w-[60px] h-[50px] lg:w-[80px] lg:h-[52px] relative"
           >
             <Image
               src="/logo.png"
@@ -49,7 +49,6 @@ export async function Header() {
               alt="Saba Al Wadu logo"
               sizes="80px"
               fill
-              className="lg:max-w-[80px] lg:max-h-[80px]"
             />
           </Link>
           <NavigationMenu className="hidden lg:flex mr-2 lg:mr-7">

@@ -59,8 +59,8 @@ export function CurrencySwitcher() {
 
   return (
     <Select onValueChange={handleCurrencyChange} value={currency}>
-      <SelectTrigger className="w-[60px] h-6 text-center p-0.5 ring-0 focus:ring-0">
-        <CircleDollarSign />
+      <SelectTrigger className="w-[60px] lg:w-full h-6 text-center p-0.5 ring-0 focus:ring-0">
+        <CircleDollarSign className="h-4" />
         <SelectValue placeholder="USD" />
       </SelectTrigger>
       <SelectContent>

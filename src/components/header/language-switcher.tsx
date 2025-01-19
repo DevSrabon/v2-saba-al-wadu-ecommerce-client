@@ -29,8 +29,8 @@ export function LanguageSwitcher() {
 
   return (
     <Select value={locale} onValueChange={handleLanguageChange}>
-      <SelectTrigger className="w-[60px] h-6 p-0.5 ring-0 focus:ring-0">
-        <Globe />
+      <SelectTrigger className="w-[60px] lg:w-full h-6 p-0.5 ring-0 focus:ring-0">
+        <Globe className="h-4" />
         <SelectValue placeholder={locale.toUpperCase()} />
       </SelectTrigger>
       <SelectContent>
