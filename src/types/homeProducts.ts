@@ -12,6 +12,28 @@ export interface IColor {
 	color_name_en: string;
 }
 
+export interface IVariant {
+	sku: null;
+	discount: number;
+	fabric_id: number;
+	variant_id: number;
+	discount_type: string;
+	special_price: number;
+	variant_price: number;
+	fabric_name_ar: string;
+	fabric_name_en: string;
+	fabric_details_ar: null;
+	fabric_details_en: null;
+}
+
+export interface ISize {
+	size: string;
+	height: string;
+	weight: string;
+	details: null;
+	size_id: number;
+}
+
 export interface IOfferDetails {
 	end_date: string;
 	offer_id: number;
@@ -47,8 +69,10 @@ export interface IProduct {
 	base_price: string;
 	base_special_price: string;
 	colors: IColor[];
+	sizes: ISize[];
 	all_images: string[];
 	p_images: IProductImage[];
+	variants: IVariant[];
 }
 
 export interface ICategoryHome {

@@ -5,6 +5,7 @@ import { getLocale } from 'next-intl/server';
 import React from 'react';
 import { AddToCart } from './add-to-card';
 import { Heart, Share2 } from 'lucide-react';
+import { checkArray } from '@/lib/utils';
 
 export async function Details({ product }: { product: IProduct }) {
 	const locale = await getLocale();
@@ -64,29 +65,85 @@ export async function Details({ product }: { product: IProduct }) {
 					</a>
 				</div>
 				<span className="mt-8 pt-8 text-gray-700 border-t border-gray-200 block"></span>
-				<div className="flex items-center flex-wrap gap-4 bg-main-50 rounded-lg py-4 px-6">
-					<div className="flex items-center gap-4">
-						<span className="text-main-600 text-sm">Special Offer:</span>
-					</div>
-					<div className="countdown" id="countdown11">
-						<ul className="countdown-list flex items-center flex-wrap">
-							<li className="countdown-list__item text-heading gap-4 text-xs font-[500] w-7 h-7 rounded-md border border-main-600 !p-0 flex items-center justify-center">
-								<span className="days">10</span>
-							</li>
-							<li className="countdown-list__item text-heading gap-4 text-xs font-[500] w-7 h-7 rounded-md border border-main-600 !p-0 flex items-center justify-center">
-								<span className="hours">6</span>
-							</li>
-							<li className="countdown-list__item text-heading gap-4 text-xs font-[500] w-7 h-7 rounded-md border border-main-600 !p-0 flex items-center justify-center">
-								<span className="minutes">5</span>
-							</li>
-							<li className="countdown-list__item text-heading gap-4 text-xs font-[500] w-7 h-7 rounded-md border border-main-600 !p-0 flex items-center justify-center">
-								<span className="seconds">a</span>
-							</li>
-						</ul>
-					</div>
-					<span className="text-gray-900 text-xs">
-						Remains untill the end of the offer
-					</span>
+				<div className="bg-main-50 rounded-lg">
+					{checkArray(product.colors) && (
+						<div className="flex items-center flex-wrap gap-4 py-3 px-6">
+							<div className="flex items-center gap-4">
+								<span className="text-main-600 text-sm">Color:</span>
+							</div>
+							<div className="countdown" id="countdown11">
+								<ul className="countdown-list flex items-center flex-wrap gap-1">
+									{product.colors?.map((color) => (
+										<li
+											key={color.color_id}
+											className="inline-flex gap-4 text-xs font-[500] w-fit px-2 h-7 rounded-md border border-main-600  items-center justify-center"
+										>
+											<span className="days">
+												{checkLocal(
+													locale,
+													color?.color_name_en,
+													color?.color_name_ar
+												)}
+											</span>
+										</li>
+									))}
+								</ul>
+							</div>
+							<span className="text-gray-900 text-xs">
+								Remains size are available
+							</span>
+						</div>
+					)}
+					{checkArray(product.sizes) && (
+						<div className="flex items-center flex-wrap gap-4 py-3 px-6">
+							<div className="flex items-center gap-4">
+								<span className="text-main-600 text-sm">Size:</span>
+							</div>
+							<div className="countdown" id="countdown11">
+								<ul className="countdown-list flex items-center flex-wrap gap-1">
+									{product.sizes?.map((size) => (
+										<li
+											key={size.size_id}
+											className="inline-flex gap-4 text-xs font-[500] w-fit px-2 h-7 rounded-md border border-main-600  items-center justify-center"
+										>
+											<span className="days">{size.size}</span>
+										</li>
+									))}
+								</ul>
+							</div>
+							<span className="text-gray-900 text-xs">
+								Remains size are available
+							</span>
+						</div>
+					)}
+					{checkArray(product.variants) && (
+						<div className="flex items-center flex-wrap gap-4 py-3 px-6">
+							<div className="flex items-center gap-4">
+								<span className="text-main-600 text-sm">Fabric:</span>
+							</div>
+							<div className="countdown" id="countdown11">
+								<ul className="countdown-list flex items-center flex-wrap gap-1">
+									{product.variants?.map((fabric) => (
+										<li
+											key={fabric.fabric_id}
+											className="inline-flex gap-4 text-xs font-[500] w-fit px-2 h-7 rounded-md border border-main-600  items-center justify-center"
+										>
+											<span className="days">
+												{checkLocal(
+													locale,
+													fabric?.fabric_name_en,
+													fabric?.fabric_name_ar
+												)}
+											</span>
+										</li>
+									))}
+								</ul>
+							</div>
+							<span className="text-gray-900 text-xs">
+								Fabric are available
+							</span>
+						</div>
+					)}
 				</div>
 
 				<div className="flex justify-between gap-4 flex-wrap mt-4">

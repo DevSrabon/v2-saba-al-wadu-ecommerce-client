@@ -27,3 +27,10 @@ export function formatQueryParams(params: any) {
 
 	return searchParams.toString();
 }
+
+export const checkArray = (array: any[]) => {
+	if (Array.isArray(array) && array.length > 0) {
+		return true;
+	}
+	return false;
+};

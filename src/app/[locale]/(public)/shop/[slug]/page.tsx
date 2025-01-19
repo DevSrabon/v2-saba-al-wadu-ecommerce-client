@@ -13,7 +13,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 	const product: { data: IProduct } = await getFetch({
 		url: `ecomm/product/${params.slug}`,
 	});
-	console.log(product);
+	console.log(JSON.stringify(product, null, 2));
 	return (
 		<section className="product-details py-4">
 			<div className="container container-lg">
