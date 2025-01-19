@@ -194,14 +194,7 @@ export function ReviewAndRatting({ product }: { product: IProduct }) {
 						<div className="border border-gray-200 rounded-lg px-2 py-10 flex-grow">
 							<div className="flex items-center gap-2 mb-5">
 								<span className="text-gray-900 flex-shrink-0">5</span>
-								<div
-									className="progress w-full bg-gray-100 rounded-[50rem] h-8"
-									role="progressbar"
-									aria-label="Basic example"
-									aria-valuenow="70"
-									aria-valuemin="0"
-									aria-valuemax="100"
-								>
+								<div className="progress w-full bg-gray-100 rounded-[50rem] h-8">
 									<div
 										className="progress-bar bg-main-600 rounded-[50rem]"
 										style={{ width: '70%' }}
@@ -228,14 +221,7 @@ export function ReviewAndRatting({ product }: { product: IProduct }) {
 							</div>
 							<div className="flex items-center gap-2 mb-5">
 								<span className="text-gray-900 flex-shrink-0">4</span>
-								<div
-									className="progress w-full bg-gray-100 rounded-[50rem] h-8"
-									role="progressbar"
-									aria-label="Basic example"
-									aria-valuenow="50"
-									aria-valuemin="0"
-									aria-valuemax="100"
-								>
+								<div className="progress w-full bg-gray-100 rounded-[50rem] h-8">
 									<div
 										className="progress-bar bg-main-600 rounded-[50rem]"
 										style={{ width: '50%' }}
@@ -262,14 +248,7 @@ export function ReviewAndRatting({ product }: { product: IProduct }) {
 							</div>
 							<div className="flex items-center gap-2 mb-5">
 								<span className="text-gray-900 flex-shrink-0">3</span>
-								<div
-									className="progress w-full bg-gray-100 rounded-[50rem] h-8"
-									role="progressbar"
-									aria-label="Basic example"
-									aria-valuenow="35"
-									aria-valuemin="0"
-									aria-valuemax="100"
-								>
+								<div className="progress w-full bg-gray-100 rounded-[50rem] h-8">
 									<div
 										className="progress-bar bg-main-600 rounded-[50rem]"
 										style={{ width: '35%' }}
@@ -296,14 +275,7 @@ export function ReviewAndRatting({ product }: { product: IProduct }) {
 							</div>
 							<div className="flex items-center gap-2 mb-5">
 								<span className="text-gray-900 flex-shrink-0">2</span>
-								<div
-									className="progress w-full bg-gray-100 rounded-[50rem] h-8"
-									role="progressbar"
-									aria-label="Basic example"
-									aria-valuenow="20"
-									aria-valuemin="0"
-									aria-valuemax="100"
-								>
+								<div className="progress w-full bg-gray-100 rounded-[50rem] h-8">
 									<div
 										className="progress-bar bg-main-600 rounded-[50rem]"
 										style={{ width: '20%' }}
@@ -330,14 +302,7 @@ export function ReviewAndRatting({ product }: { product: IProduct }) {
 							</div>
 							<div className="flex items-center gap-2 mb-0">
 								<span className="text-gray-900 flex-shrink-0">1</span>
-								<div
-									className="progress w-full bg-gray-100 rounded-[50rem] h-8"
-									role="progressbar"
-									aria-label="Basic example"
-									aria-valuenow="5"
-									aria-valuemin="0"
-									aria-valuemax="100"
-								>
+								<div className="progress w-full bg-gray-100 rounded-[50rem] h-8">
 									<div
 										className="progress-bar bg-main-600 rounded-[50rem]"
 										style={{ width: '5%' }}
