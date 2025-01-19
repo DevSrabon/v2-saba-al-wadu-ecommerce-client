@@ -1,51 +1,65 @@
+import ProductPrice from '@/components/product-cards/_components/price';
+import { checkLocal } from '@/i18n';
 import { IProduct } from '@/types';
+import { getLocale } from 'next-intl/server';
 import React from 'react';
+import { AddToCart } from './add-to-card';
+import { Heart, Share2 } from 'lucide-react';
 
-export function Details({ product }: { product: IProduct }) {
+export async function Details({ product }: { product: IProduct }) {
+	const locale = await getLocale();
+	const filledStars = Math.floor(Number(product.avg_rating));
 	return (
 		<div className="2xl:w-6/12 flex-grow-0 flex-shrink-0 basis-auto">
 			<div className="product-details__content">
-				<h5 className="mb-3">{product.p_name_en}</h5>
+				<h5 className="mb-3">
+					{checkLocal(locale, product?.p_name_en, product?.p_name_ar)}
+				</h5>
 				<div className="flex items-center flex-wrap gap-3">
 					<div className="flex items-center gap-3 flex-wrap">
-						<div className="flex items-center gap-2">
-							<span className="text-15 font-[500] text-warning-600 flex">
-								<i className="ph-fill ph-star"></i>
-							</span>
-							<span className="text-15 font-[500] text-warning-600 flex">
-								<i className="ph-fill ph-star"></i>
-							</span>
-							<span className="text-15 font-[500] text-warning-600 flex">
-								<i className="ph-fill ph-star"></i>
-							</span>
-							<span className="text-15 font-[500] text-warning-600 flex">
-								<i className="ph-fill ph-star"></i>
-							</span>
-							<span className="text-15 font-[500] text-warning-600 flex">
-								<i className="ph-fill ph-star"></i>
-							</span>
+						<div className="flex items-center">
+							{[...Array(filledStars)].map((_, index) => (
+								<svg
+									key={`filled-${index}`}
+									aria-hidden="true"
+									className="h-5 w-5 text-yellow-300"
+									fill="currentColor"
+									viewBox="0 0 20 20"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+								</svg>
+							))}
 						</div>
-						<span className="text-sm font-[500] text-neutral-600">
-							4.7 Star Rating
-						</span>
-						<span className="text-sm font-[500] text-gray-500">(21,671)</span>
+						{product.rating_count > 0 && (
+							<>
+								<span className="text-sm font-[500] text-neutral-600">
+									({product.rating_count}) Star Rating
+								</span>
+								<span className="text-sm font-[500] text-gray-500">
+									(21,671)
+								</span>
+							</>
+						)}
 					</div>
 					<span className="text-sm font-[500] text-gray-500">|</span>
 					<span className="text-gray-900">
-						<span className="text-gray-400">SKU:</span>EB4DRP
+						<span className="text-gray-400">SKU:</span>
+						{product.barcode}
 					</span>
 				</div>
 				<span className="mt-8 pt-8 text-gray-700 border-t border-gray-200 block"></span>
-				<p className="text-gray-700">
+				{/* <p className="text-gray-700">
 					Vivamus adipiscing nisl ut dolor dignissim semper. Nulla luctus
 					malesuada tincidunt. Class aptent taciti sociosqu ad litora torquent
-				</p>
+					{checkLocal(locale, product?.p_details_en, product?.p_details_ar)} */}
+				{/* 
+				</p> */}
+
 				<div className="mt-8 flex items-center flex-wrap gap-32">
-					<div className="flex items-center gap-2">
-						<h4 className="mb-0">$25.00</h4>
-						<span className="text-md text-gray-500">$38.00</span>
-					</div>
-					<a href="index.html" className="btn btn-main rounded-[50rem]">
+					<ProductPrice product={product} />
+
+					<a href="tel:0123456789" className="btn btn-main rounded-full">
 						Order on What'sApp
 					</a>
 				</div>
@@ -75,52 +89,20 @@ export function Details({ product }: { product: IProduct }) {
 					</span>
 				</div>
 
-				<div className="-between gap-4 flex-wrap mt-4">
-					<div className="flex items-center flex-wrap gap-4">
-						<div className="border border-gray-200 rounded-[50rem] py-2 px-4 flex items-center">
-							<button
-								type="button"
-								className="quantity__minus p-1 text-gray-700 hover-text-main-600 flex items-center justify-center"
-							>
-								<i className="ph ph-minus"></i>
-							</button>
-							<input
-								type="number"
-								className="quantity__input border-0 text-center w-32"
-								value="1"
-							/>
-							<button
-								type="button"
-								className="quantity__plus p-4 text-gray-700 hover-text-main-600 flex items-center justify-center"
-							>
-								<i className="ph ph-plus"></i>
-							</button>
-						</div>
-						<a
-							href="index.html"
-							className="btn btn-main rounded-[50rem] flex items-center inline-flex gap-2 px-3"
-						>
-							<i className="ph ph-shopping-cart"></i> Add To Cart
-						</a>
-					</div>
+				<div className="flex justify-between gap-4 flex-wrap mt-4">
+					<AddToCart />
 					<div className="flex items-center gap-3">
 						<a
 							href="index.html"
-							className="w-13 h-13 bg-main-50 text-main-600 text-xl hover-bg-main-600 hover-text-white flex items-center justify-center rounded-[50%]"
+							className="w-12 h-12 bg-main-50 text-main-600 text-xl hover:bg-main-600 hover:text-white flex items-center justify-center rounded-[50%]"
 						>
-							<i className="ph ph-heart"></i>
+							<Heart className="w-6 h-6" />
 						</a>
 						<a
 							href="index.html"
-							className="w-13 h-13 bg-main-50 text-main-600 text-xl hover-bg-main-600 hover-text-white flex items-center justify-center rounded-[50%]"
+							className="w-12 h-12 bg-main-50 text-main-600 text-xl hover:bg-main-600 hover:text-white flex items-center justify-center rounded-[50%]"
 						>
-							<i className="ph ph-shuffle"></i>
-						</a>
-						<a
-							href="index.html"
-							className="w-13 h-13 bg-main-50 text-main-600 text-xl hover-bg-main-600 hover-text-white flex items-center justify-center rounded-[50%]"
-						>
-							<i className="ph ph-share-network"></i>
+							<Share2 className="w-6 h-6" />
 						</a>
 					</div>
 				</div>

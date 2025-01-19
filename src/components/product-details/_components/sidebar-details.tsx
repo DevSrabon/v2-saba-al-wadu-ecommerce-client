@@ -1,4 +1,12 @@
 import { IProduct } from '@/types';
+import {
+	Box,
+	CircleCheck,
+	CreditCard,
+	Store,
+	Truck,
+	Undo2,
+} from 'lucide-react';
 import React from 'react';
 
 export function SidebarDetails({ product }: { product: IProduct }) {
@@ -9,7 +17,7 @@ export function SidebarDetails({ product }: { product: IProduct }) {
 					<div className="justify-between flex bg-main-600 rounded-[50rem] p-2 items-center">
 						<div className="flex items-center gap-2">
 							<span className="w-11 h-11 bg-white rounded-[50%] flex items-center justify-center text-2xl">
-								<i className="ph ph-storefront"></i>
+								<Store className="w-6 h-6" />
 							</span>
 							<span className="text-white">by Marketpro</span>
 						</div>
@@ -23,7 +31,7 @@ export function SidebarDetails({ product }: { product: IProduct }) {
 				</div>
 				<div className="p-6 bg-main-50 flex items-start gap-6 border-b border-gray-200">
 					<span className="w-11 h-11 bg-white text-main-600 rounded-[50%] flex items-center justify-center text-2xl flex-shrink-0">
-						<i className="ph-fill ph-truck"></i>
+						<Truck className="w-6 h-6" />
 					</span>
 					<div className="">
 						<h6 className="text-sm mb-2">Fast Delivery</h6>
@@ -34,7 +42,7 @@ export function SidebarDetails({ product }: { product: IProduct }) {
 				</div>
 				<div className="p-6 bg-main-50 flex items-start gap-6 border-b border-gray-200">
 					<span className="w-11 h-11 bg-white text-main-600 rounded-[50%] flex items-center justify-center text-2xl flex-shrink-0">
-						<i className="ph-fill ph-arrow-u-up-left"></i>
+						<Undo2 className="w-6 h-6" />
 					</span>
 					<div className="">
 						<h6 className="text-sm mb-2">Free 90-day returns</h6>
@@ -43,7 +51,7 @@ export function SidebarDetails({ product }: { product: IProduct }) {
 				</div>
 				<div className="p-6 bg-main-50 flex items-start gap-6 border-b border-gray-200">
 					<span className="w-11 h-11 bg-white text-main-600 rounded-[50%] flex items-center justify-center text-2xl flex-shrink-0">
-						<i className="ph-fill ph-check-circle"></i>
+						<CircleCheck className="w-6 h-6" />
 					</span>
 					<div className="">
 						<h6 className="text-sm mb-2">Pickup available at Shop location</h6>
@@ -52,7 +60,7 @@ export function SidebarDetails({ product }: { product: IProduct }) {
 				</div>
 				<div className="p-6 bg-main-50 flex items-start gap-6 border-b border-gray-200">
 					<span className="w-11 h-11 bg-white text-main-600 rounded-[50%] flex items-center justify-center text-2xl flex-shrink-0">
-						<i className="ph-fill ph-credit-card"></i>
+						<CreditCard className="w-6 h-6" />
 					</span>
 					<div className="">
 						<h6 className="text-sm mb-2">Payment</h6>
@@ -64,7 +72,7 @@ export function SidebarDetails({ product }: { product: IProduct }) {
 				</div>
 				<div className="p-6 bg-main-50 flex items-start gap-6 border-b border-gray-200">
 					<span className="w-11 h-11 bg-white text-main-600 rounded-[50%] flex items-center justify-center text-2xl flex-shrink-0">
-						<i className="ph-fill ph-check-circle"></i>
+						<CircleCheck className="w-6 h-6" />
 					</span>
 					<div className="">
 						<h6 className="text-sm mb-2">Warranty</h6>
@@ -76,7 +84,7 @@ export function SidebarDetails({ product }: { product: IProduct }) {
 				</div>
 				<div className="p-6 bg-main-50 flex items-start gap-6 border-b border-gray-200">
 					<span className="w-11 h-11 bg-white text-main-600 rounded-[50%] flex items-center justify-center text-2xl flex-shrink-0">
-						<i className="ph-fill ph-package"></i>
+						<Box className="w-6 h-6" />
 					</span>
 					<div className="">
 						<h6 className="text-sm mb-2">Packaging</h6>

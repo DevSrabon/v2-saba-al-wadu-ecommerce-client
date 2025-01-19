@@ -8,11 +8,11 @@ export function Slider({ product }: { product: IProduct }) {
 			<div className="product-details__left">
 				<div className="p-5  border border-gray-200 rounded-2xl">
 					<div className="">
-						<div className="  flex items-center justify-center h-full">
+						<div className="max-h-[550px] flex items-center justify-center w-full h-full">
 							<img
 								src={getImageLink(product.p_images[0].image)}
 								alt="Image"
-								className="rounded-xl"
+								className="max-h-[550px] rounded-xl w-full h-full object-cover"
 							/>
 						</div>
 					</div>
@@ -52,40 +52,45 @@ export function Slider({ product }: { product: IProduct }) {
 				<div className="mt-6">
 					<div className="flex gap-4">
 						<div className="flex-1">
-							<div className="max-w-[120px] max-h-[120px] w-full h-full flex items-center justify-center border border-gray-200 rounded-16 p-2">
+							<div className="max-w-[120px] max-h-[120px] w-full h-full flex items-center justify-center border border-gray-200 rounded-2xl p-2">
 								<img
+									className="rounded-[10px] object-cover w-full h-full"
 									src={getImageLink(product.p_images[0].image)}
 									alt="Image"
 								/>
 							</div>
 						</div>
 						<div className="flex-1">
-							<div className="max-w-[120px] max-h-[120px] w-full h-full flex items-center justify-center border border-gray-200 rounded-16 p-2">
+							<div className="max-w-[120px] max-h-[120px] w-full h-full flex items-center justify-center border border-gray-200 rounded-2xl p-2">
 								<img
+									className="rounded-[10px] object-cover w-full h-full"
 									src={getImageLink(product.p_images[0].image)}
 									alt="Image"
 								/>
 							</div>
 						</div>
 						<div className="flex-1">
-							<div className="max-w-[120px] max-h-[120px] w-full h-full flex items-center justify-center border border-gray-200 rounded-16 p-2">
+							<div className="max-w-[120px] max-h-[120px] w-full h-full flex items-center justify-center border border-gray-200 rounded-2xl p-2">
 								<img
+									className="rounded-[10px] object-cover w-full h-full"
 									src={getImageLink(product.p_images[0].image)}
 									alt="Image"
 								/>
 							</div>
 						</div>
 						<div className="flex-1">
-							<div className="max-w-[120px] max-h-[120px] w-full h-full flex items-center justify-center border border-gray-200 rounded-16 p-2">
+							<div className="max-w-[120px] max-h-[120px] w-full h-full flex items-center justify-center border border-gray-200 rounded-2xl p-2">
 								<img
+									className="rounded-[10px] object-cover w-full h-full"
 									src={getImageLink(product.p_images[0].image)}
 									alt="Image"
 								/>
 							</div>
 						</div>
 						<div className="flex-1">
-							<div className="max-w-[120px] max-h-[120px] w-full h-full flex items-center justify-center border border-gray-200 rounded-16 p-2">
+							<div className="max-w-[120px] max-h-[120px] w-full h-full flex items-center justify-center border border-gray-200 rounded-2xl p-2">
 								<img
+									className="rounded-[10px] object-cover w-full h-full"
 									src={getImageLink(product.p_images[0].image)}
 									alt="Image"
 								/>

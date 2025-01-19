@@ -40,7 +40,7 @@
 		--primary-lightness: 37.45%; /* Base lightness */
 
 		--primary: hsl(53.14deg 91.62% 37.45%);
-
+		--white: hsl(0 0% 100%);
 		--main-color: #299e60;
 		--main-color-50: #e7f9ef;
 		--main-color-100: #cef2df;
@@ -93,6 +93,17 @@
 	}
 	.modal_sub_title {
 		@apply text-center text-base tracking-tight text-gray-900;
+	}
+	.btn {
+		@apply relative border border-transparent bg-gray-800 transition-all duration-300 ease-in-out py-2 px-4 text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2;
+	}
+
+	.btn-main {
+		@apply bg-primary-500 border-primary-500;
+	}
+
+	.btn-outline {
+		@apply border-primary-500 text-primary-500 bg-transparent hover:bg-primary-500 hover:text-white;
 	}
 }
 

@@ -68,9 +68,6 @@ export function ProductCard01({
 							<span className="mr-2 ml-0.5  text-slate-400  text-xs font-light">
 								({product.rating_count})
 							</span>
-							// <span className="mr-2 ml-3 rounded bg-yellow-200 px-2.5 py-0.5 text-xs font-semibold">
-							//   {product.rating_count}
-							// </span>
 						)}
 					</div>
 				</div>

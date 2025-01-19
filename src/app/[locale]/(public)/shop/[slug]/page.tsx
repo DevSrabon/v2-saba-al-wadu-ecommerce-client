@@ -13,7 +13,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 	const product: { data: IProduct } = await getFetch({
 		url: `ecomm/product/${params.slug}`,
 	});
-
+	console.log(product);
 	return (
 		<section className="product-details py-4">
 			<div className="container container-lg">
@@ -29,11 +29,17 @@ export default async function Page({ params }: { params: { slug: string } }) {
 				<div className="pt-20">
 					<div className="border rounded-2xl">
 						<div className="px-4 py-3 border-b border-gray-200 flex justify-between flex-wrap gap-4">
-							<ul className="  mb-3">
-								<li className="nav-item" role="presentation">
+							<ul className="flex items-center mb-3 gap-2">
+								<li
+									className="nav-item btn btn-main rounded-full"
+									role="presentation"
+								>
 									<button>Description</button>
 								</li>
-								<li className="nav-item" role="presentation">
+								<li
+									className="nav-item btn btn-outline rounded-full"
+									role="presentation"
+								>
 									<button>Reviews</button>
 								</li>
 							</ul>
